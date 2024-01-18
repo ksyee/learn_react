@@ -8,7 +8,7 @@ body {
   color: var(--white, #fff);
 }
 
-#app {
+#root {
   strong {
     text-transform: uppercase;
     font-size: 12px;
