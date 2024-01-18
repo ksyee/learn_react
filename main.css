@@ -1,0 +1,16 @@
+:root {
+  --primary: #2731f4;
+}
+
+body {
+  font-size: 1rem/1.5;
+  font-family: 'SUIT Variable', sans-serif;
+  color: white;
+  background-color: var(--primary);
+}
+
+#app {
+  strong {
+    text-transform: uppercase;
+  }
+}

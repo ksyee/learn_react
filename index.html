@@ -6,27 +6,31 @@
     <link
       rel="icon"
       href="assets/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="main.css" />
     <script type="module">
       // React 모듈 불러오기
       import { createElement as h } from 'https://esm.sh/react';
       // ReactDOM 모듈 불러오기
       import { createRoot } from 'https://esm.sh/react-dom';
 
-      const h1Element = h('h1', {}, '리액트');
+      const h1Element = h('h1', {}, '안녕!', h('br'), '리액트');
       const pElement = h(
         'p',
         {},
         '리액트는 사용자 인터페이스 구축을 위한 JavaScript 오픈소스 라이브러리입니다.'
       );
+      const strongElement = h('strong', {}, 'fundamental');
 
-      const appElement = h('div', {}, h1Element, pElement);
+      const appElement = h('div', {}, strongElement, h1Element, pElement);
 
       // 리액트가 하는 일은 리액트 엘리먼트를 생성하는 것이다.
       // 리액트 엘리먼트를 화면(DOM)에 렌더링하려면 "리액트 DOM"이 필요하다.
 
       // ReactDOM API
       // ReactDOM.createRoot(domNode) // 실제 DOM에 위치한 #root 요소
-      const reactDomRoot = createRoot(document.querySelector('#root'));
+      const reactDomRoot = createRoot(document.querySelector('#app'));
 
       console.log(reactDomRoot); // 리액트 DOM 루트 객체 생성
 
@@ -35,6 +39,6 @@
   </head>
   <body>
     <noscript>이 앱을 사용하려면 자바스크립트 활성화가 필요합니다.</noscript>
-    <div id="root"></div>
+    <div id="app"></div>
   </body>
 </html>
