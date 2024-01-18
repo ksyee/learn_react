@@ -1,4 +1,4 @@
-import { createElement as h } from './lib/EUID.js';
+import { createElement as h, createRoot } from './lib/EUID.js';
 
 const appElement = h(
   'div',
@@ -10,4 +10,10 @@ const appElement = h(
   h('p', { 'data-id': 'slogan' }, '리액트는....')
 );
 
-console.log(appElement.outerHTML);
+createRoot(document.querySelector('#root')).render(appElement);
+
+const buttonElement = document.querySelector('.getOutReact__button');
+
+buttonElement.addEventListener('click', () => {
+  createRoot(document.querySelector('#root')).unmount();
+});
