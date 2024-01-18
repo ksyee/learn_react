@@ -1,8 +1,8 @@
 {
-	"scripts": {
-		"dev": "serve"
-	},
-	"devDependencies": {
-		"serve": "14.2.1"
-	}
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.0.11"
+  }
 }
