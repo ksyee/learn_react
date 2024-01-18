@@ -1,44 +1,51 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko-KR">
   <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
+    <meta content="charset=UTF-8" />
     <title>리액트 펀더멘탈</title>
+    <link
+      rel="icon"
+      href="assets/favicon.svg" />
     <script type="module">
-      import React from 'https://esm.sh/react';
-      import ReactDOM from 'https://esm.sh/react';
+      // JavaScript 실습
+      // 1. 데이터 분리 후 선언
+      const appData = {
+        headline: '리액트',
+        paragraph:
+          '리액트는 사용자 인터페이스 구축을 위한 JavaScript 오픈소스 라이브러리입니다.',
+      };
 
-      // console.log(React.version);
+      // 문서(DOM)에서 대상(요소) 찾기
+      const appElement = document.getElementById('app');
+      // console.log(appElement); // null | HTMLElement
 
-      // 리액트 요소 생성
-      const h1Element = React.createElement('h1', {}, '리액트');
-      const pElement = React.createElement(
-        'p',
-        {},
-        '리액트는 개쩌는 라이브러리임.'
-      );
+      // 2. 동적 렌더링
+      function render() {
+        // HTML 요소 동적 생성
+        // const h1Element = appElement.querySelector('h1');
+        const h1Element = document.createElement('h1');
+        // const pElement = appElement.querySelector('p');
+        const pElement = document.createElement('p');
 
-      // 리액트 요소 렌더링
-      function createElement(type, props, ...children) {
-        return {
-          $$typeof: Symbol('euid.element'),
-          type,
-          props: { ...props, children },
-        };
+        // 데이터 바인딩
+        h1Element.textContent = appData.headline;
+        pElement.textContent = appData.paragraph;
+
+        // 출력
+        // console.log(h1Element);
+        // console.log(pElement);
+
+        // 화면에 렌더링
+        appElement.append(h1Element, pElement);
       }
 
-      const reactDomRoot = ReactDOM.createRoot(document.querySelector('#root'));
-
-      console.log(reactDomRoot);
-
-      // reactDomRoot.render(h1Element);
-      reactDomRoot.render(createElement('div', {}, h1Element, pElement));
+      render();
     </script>
   </head>
   <body>
-    <noscript>이 앱을 사용하려면 자바스크립트가 활성화되어야 합니다.</noscript>
-    <div id="root"></div>
+    <div id="app">
+      <!-- <h1></h1> -->
+      <!-- <p></p> -->
+    </div>
   </body>
 </html>
