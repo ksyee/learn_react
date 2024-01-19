@@ -1,8 +1,8 @@
-import React from "https://esm.sh/react";
+import React, { createElement as h } from "https://esm.sh/react";
 import { createRoot } from "https://esm.sh/react-dom";
 
 const data = {
-  greetingMessage: ["안녕!", "리액트."],
+  greetingMessage: ["hello!", "react."],
   message:
     "리액트는 사용자 인터페이스 구축을 위한 JavaScript 오픈소스 라이브러리입니다.",
 };
@@ -15,13 +15,35 @@ const anotherData = {
 const createApp = (data) => (
   <div id="app">
     <h1>
-      {data.greetingMessage[0]}
+      {data.greetingMessage[0].toUpperCase()}
       <br />
-      {data.greetingMessage[1]}
+      {data.greetingMessage[1].toUpperCase()}
     </h1>
     <p>{data.message}</p>
   </div>
 );
+
+const createApp2 = (data) => {
+  return h(
+    <div id="app">
+      <h1>
+        {data.greetingMessage[0]}
+        <br />
+        {data.greetingMessage[1]}
+      </h1>
+      <p>{data.message}</p>
+    </div>
+  );
+};
+
+const compareJSX = (data) => {
+  return h(
+    "div",
+    { id: "app" },
+    h("hi", null, data.greetingMessage[0], h("br"), data.greetingMessage[1]),
+    h("p", null, data.message)
+  );
+};
 
 const rootElement = document.getElementById("root");
 const reactDomRoot = createRoot(rootElement);
