@@ -1,8 +1,8 @@
-import React from 'https://esm.sh/react';
-import { createRoot } from 'https://esm.sh/react-dom';
+import React from "https://esm.sh/react";
+import { createRoot } from "https://esm.sh/react-dom";
 
 const createApp = () => (
-  <div id='app'>
+  <div id="app">
     <h1>
       안녕!
       <br />
@@ -15,7 +15,7 @@ const createApp = () => (
   </div>
 );
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 const reactDomRoot = createRoot(rootElement);
 
 /* 함수 실행 => JSX -> React.createElement() -> 리액트 요소 : ReactElement */
