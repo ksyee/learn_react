@@ -7,17 +7,7 @@ const data = {
     "리액트는 사용자 인터페이스 구축을 위한 JavaScript 오픈소스 라이브러리입니다.",
 };
 
-const createApp = (
-  // data
-  // [0] data
-  // [3]
-  data,
-  // options
-  options = {} // [ES6 Core] default parameter
-) => {
-  // [1]
-  // const { greetingMessage: [ firstMessage, lastMessage ], message } = data;
-
+const createApp = (data, options = {}) => {
   return (
     <div id="app">
       <h1>
@@ -27,10 +17,6 @@ const createApp = (
       </h1>
       <p>{data.message}</p>
       <form>
-        {/* ❌ */}
-        {/* <input aria-label="중요도" type="range" disabled="options.isDisabled" /> */}
-        {/* ✅ */}
-        {/* props 또한 {} 안에 값을 끼워넣을 수 있음 */}
         <input
           type="range"
           min={options.min}
