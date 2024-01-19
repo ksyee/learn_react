@@ -33,88 +33,37 @@ const getGreetMessage = (condition = true) => {
   return greet;
 };
 
-const createApp = (data) => {
+const createApp = (
+  { greetingMessage: [firstMessage, lastMessage], message, min, max, step },
+  options = {}
+) => {
   return (
     <div id="app">
       <h1>
-        {getGreetMessage()}
+        {firstMessage.toUpperCase()}
         <br />
-        {data.greetingMessage[1].toUpperCase()}
+        {lastMessage.toUpperCase()}
       </h1>
-      <p>{data.message}</p>
+      <p>{message}</p>
+
+      <form>
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          aria-label="중요도"
+          disabled={options.isDisabled}
+        ></input>
+        <button type="submit">보내기</button>
+      </form>
     </div>
-  );
-};
-
-const createApp2 = (data) => {
-  return h(
-    "div",
-    { id: "app" },
-    h(
-      "h1",
-      {},
-      // data.greetingMessage[0].toUpperCase(),
-      // JSX 내부 슬롯 {} 안에 문을 사용할 수 없음
-      // - 식 : 함수 영역 안이라면 문을 끌어올려서 값을 설정해 슬롯에 삽입
-      // - 함수 실행 : 문을 포함한 함수를 실행
-      // if (true) {
-      //     greet = data.greetingMessage[0].toUpperCase()
-      // } else {
-      //     greet = data.greetingMessage[0].toLowerCase()
-      // },
-      h("br"),
-      data.greetingMessage[1].toUpperCase()
-    ),
-    h("p", null, data.message)
-  );
-};
-
-const createApp2 = (data) => {
-  return h(
-    <div id="app">
-      <h1>
-        {data.greetingMessage[0]}
-        <br />
-        {data.greetingMessage[1]}
-      </h1>
-      <p>{data.message}</p>
-    </div>
-  );
-};
-
-const compareJSX = (data) => {
-  return h(
-    "div",
-    { id: "app" },
-    h("hi", null, data.greetingMessage[0], h("br"), data.greetingMessage[1]),
-    h("p", null, data.message)
   );
 };
 
 const rootElement = document.getElementById("root");
 const reactDomRoot = createRoot(rootElement);
 
-/* 함수 실행 => JSX -> React.createElement() -> 리액트 요소 : ReactElement */
-function render(mode = "data") {
-  reactDomRoot.render(createApp(mode === "data" ? data : anotherData));
-}
-
-render();
-
-// 버튼 이벤트 핸들링
-const button = document.querySelector("button");
-
-// 데이터 전환을 위한 상태 변수
-let mode = "data"; // 'data' | 'anotherData'
-
-const handleChangeMessage = () => {
-  if (mode.includes("data")) {
-    mode = "anotherData";
-  } else {
-    mode = "data";
-  }
-
-  render(mode);
-};
-
-button.addEventListener("click", handleChangeMessage);
+reactDomRoot.render(
+  createApp(data, { isDisabled: false, min: 0, max: 20, step: 1 })
+);
