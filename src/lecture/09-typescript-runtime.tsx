@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // @ts-ignore
 const { createRoot } = ReactDOM;
@@ -13,7 +13,7 @@ const createApp = () => {
   );
 };
 
-const rootElement = document.querySelector("#root") as HTMLDivElement;
+const rootElement = document.querySelector('#root') as HTMLDivElement;
 const root = createRoot(rootElement);
 
 root.render(createApp());
