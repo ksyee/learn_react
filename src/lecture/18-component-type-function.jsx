@@ -3,14 +3,24 @@ import { createRoot } from 'react-dom/client';
 
 // 함수 컴포넌트 (important syntax!!!)
 // declare function
-function App() {
+// function App() {
+//   return (
+//     <div id="app" lang="en">
+//       {/* JSX 주석 : JavaScript 식 사용 (값!) */}
+//       <h1>{`hello react!`.toUpperCase()}</h1>
+//     </div>
+//   );
+// }
+
+// 화살표 함수
+const App = () => {
   return (
     <div id="app" lang="en">
       {/* JSX 주석 : JavaScript 식 사용 (값!) */}
       <h1>{`hello react!`.toUpperCase()}</h1>
     </div>
   );
-}
+};
 
 // arrow function
 // const App = () => {};
