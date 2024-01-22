@@ -1,25 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-// React.Component Type 1 :: class syntax
-class App {
-  render() {
-    return (
-      <div id="app" lang="en">
-        <h1>React Application</h1>
-      </div>
-    );
-  }
-}
+import App from './components/App.class';
 
-// React.Component Type 2 :: function syntax
-function createApp() {
-  return (
-    <div id="app" lang="en">
-      <h1>React Application</h1>
-    </div>
-  );
-}
+console.log(App);
 
 const domElement = document.getElementById('root');
 
@@ -29,7 +13,7 @@ if (domElement) {
   // 클래스 구문
   // const app = new App().render(); // app ????
   // 함수 구문
-  const app = createApp();
-  console.log(app);
+  const app = React.createElement(App /* 컴포넌트 타입 */);
+
   reactDomRoot.render(app);
 }
