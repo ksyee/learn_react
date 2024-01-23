@@ -11,7 +11,7 @@ const pxToRemFunc = (start, end) => {
 // 타입을 지정하고 싶은 객체 바로 위에 타입스크립트 구문이 포함된 jsdoc 주석을 써 주셔야 타입스크립트의 지원을 받을 수 있습니다,
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['index.html', './src/**/*.{js,jsx,ts,tsx,html}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx,html}'],
   theme: {
     extend: {
       spacing: {
