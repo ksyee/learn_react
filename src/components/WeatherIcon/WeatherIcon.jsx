@@ -1,10 +1,16 @@
-export default function WeatherIcon({ type }) {
-  const fileType = type.replace(/\s+/g, '-');
-  const image = `/images/Weather/${fileType}.svg`;
+import './WeatherIcon.css';
 
-  return (
-    <>
-      <img src={image} alt={type} title={type} />
-    </>
-  );
+// props {
+//   type: '맑고 구름 조금' | '맑음' | '천둥' | '비' | '미세먼지'
+//   type: 'fine-dust' | 'lightning' | 'partly-cloudy' | 'rainy' | 'sunny'
+// }
+
+function WeatherIcon(props) {
+  const label = '';
+  const type = props.type.replace(/\s+/g, '-');
+  const imageSource = `/images/weather-${type}.svg`;
+
+  return <img src={imageSource} alt={label} title={label} />;
 }
+
+export default WeatherIcon;
