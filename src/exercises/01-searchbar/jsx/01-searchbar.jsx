@@ -2,6 +2,7 @@
 import './01-searchbar.css';
 
 // module (with from)
+// import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 // DOM Script === Vanilla Script

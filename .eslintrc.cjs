@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'react/jsx-pascal-case': 'warn',
+    'react/prop-types': 'off',
     // "react/jsx-uses-react": "off",
     // "react/react-in-jsx-scope": "off"
   },
