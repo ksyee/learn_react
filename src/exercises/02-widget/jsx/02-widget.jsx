@@ -1,8 +1,7 @@
 // no module (without from)
-import './02-widget.css';
+import '../02-widget.css';
 
 // module
-import React from 'https://esm.sh/react';
 import { createRoot } from 'https://esm.sh/react-dom';
 
 // image
@@ -11,7 +10,7 @@ import cloudy from '/src/assets/Widget/Weather/partly_cloudy.png';
 const yesterdayDegrees = 0.4;
 const todayDegrees = -0.9;
 
-function renderWidget() {
+function RenderWidget() {
   return (
     <div className="widget">
       <div className="text-wrapper">
@@ -27,4 +26,4 @@ function renderWidget() {
   );
 }
 
-createRoot(document.getElementById('root')).render(renderWidget());
+createRoot(document.getElementById('root')).render(RenderWidget());
