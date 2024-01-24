@@ -8,7 +8,6 @@ export function ContactCard({
   name,
   job,
   email,
-  gender,
   face,
   ext = 'jpg',
 }) {
