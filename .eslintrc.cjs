@@ -15,6 +15,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
   ],
   overrides: [],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
