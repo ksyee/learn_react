@@ -1,12 +1,17 @@
 import './23-contact-card.css';
 
 const IMAGE_URL =
-  'https://raw.githubusercontent.com/yamoo9/assets/master/images/faces';
+  'https://raw.githubusercontent.com/yamoo9/assets/master/images/faces/';
 
-function ContactCard({ name, job, email, face, ext = 'jpg' }) {
+export function ContactCard({ name, job, email, face, ext = 'jpg' }) {
   return (
     <li className="ContactCardItem">
-      <img src={`${IMAGE_URL}/${face}.${ext}`} height={90} width={90} alt />
+      <img
+        src={`${IMAGE_URL}/${face}.${ext}`}
+        height={90}
+        width={90}
+        alt="profile"
+      />
       <strong>{name}</strong>
       <dl>
         <dt>직업</dt>
@@ -20,7 +25,7 @@ function ContactCard({ name, job, email, face, ext = 'jpg' }) {
   );
 }
 
-function ContactCardList({ children }) {
+export function ContactCardList({ children }) {
   return <ul className="ContactCardList">{children}</ul>;
 }
 

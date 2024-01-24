@@ -2,25 +2,25 @@
 
 import './25-mapping-over-data.css';
 import contactData from '../data/contacts.json';
+import { ContactCard, ContactCardList } from './23-contact-card';
 
 export default function Exercise() {
   const { items } = contactData;
+  const item = items[0];
+  console.log(item);
 
-  const children = items.map(({ id, name, email }) => {
-    return (
-      <li style={listStyle}>
-        <span>{id}</span>
-        <span>{name}</span>
-        <span>{email}</span>
-      </li>
-    );
-  });
-
-  return <ul>{children}</ul>;
+  return (
+    <ContactCardList>
+      {items.map((item) => (
+        <ContactCard
+          key={item.id}
+          face={item.face}
+          name={item.name}
+          job={item.job}
+          email={item.email}
+          gender={item.gender}
+        />
+      ))}
+    </ContactCardList>
+  );
 }
-
-const listStyle = {
-  display: 'flex',
-  flexFlow: 'column',
-  marginBlockEnd: 20,
-};
