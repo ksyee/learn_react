@@ -1,11 +1,23 @@
-export default function Button(props) {
+import './Button.css';
+
+// props: { loading, disable, disabled, mode, type, state, ... }
+
+function Button(props) {
+  let buttonLabel = props.children;
+
+  if (props.loading) {
+    buttonLabel = '⏳ 로딩 중...';
+  }
+
   return (
     <button
       type={props.type ?? 'button'}
-      className="cursor-pointer select-none border-full py-4pxr px-12pxr border-2 border-current bg-transparent text-[#0008] disabled:text-white"
+      className="Button"
       disabled={props.disable}
     >
-      {props.children}
+      {buttonLabel}
     </button>
   );
 }
+
+export default Button;
