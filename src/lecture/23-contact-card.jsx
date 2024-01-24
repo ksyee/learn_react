@@ -31,7 +31,7 @@ function Exercise() {
         face="woman/02"
         name="박연주"
         job="웹 디자이너"
-        email="ayounju@dev.io"
+        email="hayounju@dev.io"
       />
       <ContactCard
         face="man/03"
