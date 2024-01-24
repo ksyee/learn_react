@@ -1,6 +1,5 @@
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 import './Widget.css';
-import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 function Widget(props) {
   return (
