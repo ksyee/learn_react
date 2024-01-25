@@ -1,5 +1,5 @@
 function A11yHidden() {
-  return <></>;
+  return null;
 }
 
 export default A11yHidden;

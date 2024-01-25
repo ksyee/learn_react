@@ -1,7 +1,7 @@
-// import { A11yHidden } from '../components/A11yHidden/A11yHidden';
+import { A11yHidden } from '../components';
 
 function Exercise() {
-  return <></>;
+  return null;
 }
 
 export default Exercise;
