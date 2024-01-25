@@ -1,3 +1,4 @@
+// 유틸리티 함수
 export function getStaticAsset(assetPath) {
   return import.meta.env.BASE_URL + assetPath;
 }
