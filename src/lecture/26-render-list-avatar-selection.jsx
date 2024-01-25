@@ -1,9 +1,12 @@
 import Avatar from '../components/Avatar/Avatar';
 
-export default function Exercise() {
+function Exercise() {
   return (
     <>
-      <Avatar />
+      <Avatar isOnline={true} />
+      <Avatar isOnline={false} />
     </>
   );
 }
+
+export default Exercise;
