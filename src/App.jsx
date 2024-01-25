@@ -1,4 +1,4 @@
-import Exercise from './lecture/25-mapping-over-data';
+import Exercise from './lecture/26-render-list-avatar-selection';
 
 function App() {
   return (
