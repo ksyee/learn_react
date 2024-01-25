@@ -48,7 +48,7 @@ function Exercise1() {
   // );
 
   // 로그인 여부 (상태 변수, 랜덤 값)
-  let isSignin; // Math.random() >= 0.5;
+  // let isSignin; // Math.random() >= 0.5;
 
   // 로그인 여부에 따라 조건부 렌더링 마크업
   // let markup = <></>;
