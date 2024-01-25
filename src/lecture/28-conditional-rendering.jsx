@@ -1,5 +1,23 @@
 /* eslint-disable */
-export default function Exercise() {
+export default function Exercise2({ isShowLink }) {
+  return (
+    <div>
+      <span className="message one">리액트</span>
+      {isShowLink ? '' : '('}
+      <a
+        hidden={isShowLink}
+        href="http://react.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        https://react.dev
+      </a>
+      {isShowLink ? '' : ')'}
+    </div>
+  );
+}
+
+function Exercise1() {
   // return (
   //   <>
   //     <DashboardPage />
@@ -47,14 +65,14 @@ export default function Exercise() {
   // return isSignin ?? <SignInPage />;
 
   // 5. 옵셔널 체이닝 활용
-  return renders.dashbardPage?.(); // undefined
+  return renders.dashboardPage?.(); // undefined
 }
 
 const renders = {
   sign() {
     return <SignInPage />;
   },
-  dashbard() {
+  dashboard() {
     return <DashboardPage />;
   },
   // dashboardPage: undefined
