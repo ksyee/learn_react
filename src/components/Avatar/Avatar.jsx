@@ -1,10 +1,11 @@
 import './Avatar.css';
 
 function Avatar({ photo, name = '', isOnline = false }) {
+  const status = isOnline ? 'online' : 'offline';
   return (
     <figure className="Avatar">
       <img src={photo} alt={name} />
-      <figcaption>{isOnline ? '온라인' : '오프라인'}</figcaption>
+      <figcaption aria-label={status} title={status} />
     </figure>
   );
 }

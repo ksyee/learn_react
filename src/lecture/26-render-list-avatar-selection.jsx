@@ -12,11 +12,14 @@ function Exercise() {
     }
 
     // 랜덤 온/오프라인 설정
-    if (Math.random() >= 0.5) {
-      item.isOnline = true;
-    } else {
-      item.isOnline = false;
-    }
+    // if (Math.random() >= 0.5) {
+    //   item.isOnline = true;
+    // } else {
+    //   item.isOnline = false;
+    // }
+
+    // 식
+    item.isOnline = Math.random() >= 0.5;
 
     return item;
   }); // map 메서드 -> 새로운 배열
