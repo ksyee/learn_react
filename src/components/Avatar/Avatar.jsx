@@ -2,9 +2,14 @@ import './Avatar.css';
 
 function Avatar(
   /* props */
-  { photo, isOnline = false }
+  { photo, name, isOnline = false }
 ) {
-  return null;
+  return (
+    <figure>
+      <img src={photo} alt={name} />
+      <figcaption>{isOnline ? '온라인' : '오프라인'}</figcaption>
+    </figure>
+  );
 }
 
 export default Avatar;
