@@ -2,7 +2,7 @@ let count = 100;
 
 console.log(`count = ${count}`);
 
-function Exercise() {
+function Exercise({ message }) {
   const handleClick = (e) => {
     // Event 객체 (합성 이벤트)
     // console.log(e);
@@ -33,12 +33,18 @@ function Exercise() {
   const actionTwo = () => console.log('two');
   const actionThree = () => console.log('three');
 
-  const handleMultiEvents = (e) => {
+  const handleMultiEvents = (message, e) => {
     e.stopPropagation();
+
+    console.log(message);
 
     actionOne();
     actionTwo();
     actionThree();
+  };
+
+  const handleOthers = (message, e) => {
+    alert(message);
   };
 
   return (
@@ -61,7 +67,12 @@ function Exercise() {
       <button type="button" onClick={handleCountUp}>
         count up
       </button>
-      <button type="button" onClick={handleMultiEvents}>
+      <button
+        type="button"
+        onClick={(e) => {
+          handleMultiEvents(message, e);
+        }}
+      >
         multi event handling
       </button>
     </div>
