@@ -1,7 +1,14 @@
-export default function Exercise() {
-  function handleClick(e) {
-    console.log(e.target);
-  }
+function Exercise() {
+  const handleClick = (e) => {
+    // Event 객체 (합성 이벤트)
+    // console.log(e);
+    // Event 객체 (브라우저 실제 이벤트)
+    // console.log(e.nativeEvent);
+
+    console.log('------------------------------------');
+    console.log(`e.target = ${e.target.nodeName}`); // 클릭한 요소(이벤트가 전파된 요소)
+    console.log(`e.currentTarget = ${e.currentTarget.nodeName}`);
+  };
 
   return (
     <div
@@ -9,7 +16,7 @@ export default function Exercise() {
         display: 'flex',
         gap: 20,
         padding: 20,
-        border: '1px solid black',
+        border: '1px solid blue',
       }}
       onClick={handleClick}
     >
@@ -29,8 +36,10 @@ export default function Exercise() {
         }}
         onClick={handleClick}
       >
-        me!
+        Me
       </em>
     </div>
   );
 }
+
+export default Exercise;
