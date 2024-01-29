@@ -12,11 +12,13 @@ function CatCardItem({ cat: { imageAlt, imageSrc, name, badges, birthday } }) {
           태어난 날: {convertDayFormat(birthday)}
         </p>
       </header>
-      <ul className={`${classes.badgeList} ${classes.golden}`}>
-        {badges.map((badge) => (
-          <li key={badge.slug}>{badge.label}</li>
-        ))}
-      </ul>
+      {badges.length > 0 && (
+        <ul className={`${classes.badgeList} ${classes.golden}`}>
+          {badges.map((badge) => (
+            <li key={badge.slug}>{badge.label}</li>
+          ))}
+        </ul>
+      )}
     </article>
   );
 }
