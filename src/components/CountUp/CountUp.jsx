@@ -4,7 +4,7 @@ function CountUp({ count = 0 }) {
   return (
     <div className={classes.CountUp}>
       <output>{count}</output>
-      <button type="button" className={classes.button}>
+      <button type="button" className={classes.button} aria-label="카운트 업">
         +1
       </button>
     </div>
