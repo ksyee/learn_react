@@ -2,7 +2,7 @@ import classes from './CatCardItem.module.css';
 import { getStaticImage } from '../../utils/getStaticAsset';
 import convertDayFormat from '../../utils/convertDayFormat';
 
-function CatCardItem({ cat: { imageSrc, imageAlt, name, badges, birthday } }) {
+function CatCardItem({ cat: { imageAlt, imageSrc, name, badges, birthday } }) {
   return (
     <article className={classes.CatCard}>
       <header>
@@ -13,9 +13,9 @@ function CatCardItem({ cat: { imageSrc, imageAlt, name, badges, birthday } }) {
         </p>
       </header>
       <ul className={`${classes.badgeList} ${classes.golden}`}>
-        {badges.map((badge) => {
-          return <li key={badge.slug}>{badge.label}</li>;
-        })}
+        {badges.map((badge) => (
+          <li key={badge.slug}>{badge.label}</li>
+        ))}
       </ul>
     </article>
   );
