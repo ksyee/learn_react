@@ -1,0 +1,17 @@
+.CountUp {
+  display: flex;
+  gap: 8px;
+  margin: 12px;
+
+  output {
+    font-weight: 900;
+  }
+}
+
+.button {
+  color: #f0f0f3;
+  background-color: #101919;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
