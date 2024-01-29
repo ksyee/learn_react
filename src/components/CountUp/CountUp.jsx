@@ -1,10 +1,15 @@
 import classes from './CountUp.module.css';
 
-function CountUp({ count = 0 }) {
+function CountUp({ count = 0, countUp }) {
   return (
     <div className={classes.CountUp}>
       <output>{count}</output>
-      <button type="button" className={classes.button} aria-label="카운트 업">
+      <button
+        type="button"
+        className={classes.button}
+        aria-label="카운트 업"
+        onClick={countUp}
+      >
         +1
       </button>
     </div>
