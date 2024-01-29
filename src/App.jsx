@@ -1,9 +1,9 @@
-import Exercise from './lecture/31-event-handling';
+import Exercise from './lecture/32-react-state-management';
 
 function App() {
   return (
     <div className="app">
-      <Exercise message="최강 8기 화이팅" />
+      <Exercise />
     </div>
   );
 }
