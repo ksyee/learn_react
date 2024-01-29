@@ -6,7 +6,7 @@ export default function Exercise2({ isShowLink = false }) {
   return (
     <div>
       <span className="message one">리액트</span>
-      {!isShowLink ? '' : '('}
+      {isShowLink ? ' (' : ''}
       <a
         // v-show 디렉티브처럼 (수시로 전환(toggle)할 경우 더 나음)
         // hidden={isShowLink}
@@ -17,7 +17,7 @@ export default function Exercise2({ isShowLink = false }) {
       >
         https://react.dev
       </a>
-      {!isShowLink ? '' : ')'}
+      {isShowLink ? ')' : ''}
     </div>
   );
 
@@ -48,7 +48,9 @@ function Exercise1() {
   // );
 
   // 로그인 여부 (상태 변수, 랜덤 값)
-  let isSignin; // Math.random() >= 0.5;
+  // let isSignin; // Math.random() >= 0.5;
+
+  console.log(isSignin);
 
   // 로그인 여부에 따라 조건부 렌더링 마크업
   // let markup = <></>;

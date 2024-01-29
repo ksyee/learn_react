@@ -1,10 +1,9 @@
-import Exercise from './lecture/28-conditional-rendering';
+import Exercise from './lecture/32-react-state-management';
 
 function App() {
   return (
     <div className="app">
       <Exercise />
-      <Exercise isShowLink />
     </div>
   );
 }
