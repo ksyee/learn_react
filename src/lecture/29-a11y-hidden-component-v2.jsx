@@ -18,15 +18,15 @@ function Exercise() {
           height: 1080 / 4,
         }}
       >
-        <A11yHidden>{bannerInfo}</A11yHidden> {/* <span>...</span> */}
-        <A11yHidden as="figcaption">{bannerInfo}</A11yHidden> {/* <p>...</p> */}
+        <A11yHidden>{bannerInfo}</A11yHidden>
+        <A11yHidden as="figcaption">{bannerInfo}</A11yHidden>
       </div>
     </figure>
   );
 }
 
-function ExampleImg() {
-  return <img src={bannerImage} alt={bannerInfo} height={800} />;
-}
+// function ExampleImg() {
+//   return <img src={bannerImage} alt={bannerInfo} height={800} />;
+// }
 
 export default Exercise;
