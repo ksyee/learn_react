@@ -36,14 +36,14 @@ function Exercise({ message }) {
   const handleMultiEvents = (message, e) => {
     e.stopPropagation();
 
-    console.log(message);
+    console.log(`message prop value is ${message}`);
 
     actionOne();
     actionTwo();
     actionThree();
   };
 
-  const handleOthers = (message, e) => {
+  const handleOthers = (message) => () => {
     alert(message);
   };
 
@@ -58,22 +58,22 @@ function Exercise({ message }) {
       <button type="button" onClick={handleCountDown}>
         count down
       </button>
-      {/* {
-        React.createElement('button', {
-          type: 'button',
-          onClick: handleCountDown() // undefined
-        })
-      } */}
       <button type="button" onClick={handleCountUp}>
         count up
       </button>
       <button
         type="button"
-        onClick={(e) => {
-          handleMultiEvents(message, e);
-        }}
+        // 인라인 화살표 함수 활용
+        onClick={(e) => handleMultiEvents(message, e)}
       >
         multi event handling
+      </button>
+      <button
+        type="button"
+        // 클로저 활용
+        onClick={handleOthers(message)}
+      >
+        using closure
       </button>
     </div>
   );
