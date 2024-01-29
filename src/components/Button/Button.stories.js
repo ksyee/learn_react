@@ -6,8 +6,8 @@ import Button from './Button';
 const storyMeta = {
   title: 'components/Button',
   component: Button,
-  // props 객체
   tags: ['autodocs'],
+  // props 객체
   args: {
     loading: false,
     children: '최강! 8기를 응원해주세요! 😉',
@@ -18,8 +18,8 @@ export default storyMeta;
 
 // 컴포넌트 스토리 1+
 // Figma Component Variants
-export const Primary = {};
-Primary.storyName = '기본 상태';
+export const Default = {};
+Default.storyName = '기본 상태';
 
 export const Loading = {
   args: {
