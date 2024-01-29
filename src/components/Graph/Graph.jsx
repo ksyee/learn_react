@@ -1,6 +1,11 @@
 import classes from './Graph.module.css';
+import { range } from '../../utils/range';
 
-function Graph() {
+function Graph({ start, end, step = 1 }) {
+  if (start >= end) {
+    throw new Error('start가 end보다 작아야 합니다.');
+  }
+
   return (
     <figure className={classes.Graph}>
       <span className={classes.peg}>0</span>
