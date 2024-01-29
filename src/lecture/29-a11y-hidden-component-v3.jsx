@@ -16,14 +16,19 @@ function Exercise() {
     <figure>
       {/* [1] 스타일 확장 시, props 합성 주의! */}
       <DemoImg
-        data-testid="demo image"
-        aria-label="좋은 세상 만들기"
-        className="one two three"
+        // 컴포넌트 작성자가 설계한 속성
         imageSource={bannerImage}
+        width={840}
+        height={320}
         ratio={4}
+        // 컴포넌트 사용자가 스타일 확장하는 경우
+        className="one two three"
         style={{
           filter: 'blur(4px)',
         }}
+        // 개발자가 설계한 속성이 아닌 경우(restProps)
+        data-testid="demo image"
+        aria-label="좋은 세상 만들기"
       >
         {/* [2] Skip to Content (Links) */}
         <A11yHidden as="a" href="/demo" focusable>
