@@ -1,4 +1,4 @@
-import Exercise from './lecture/32-react-state-management';
+import Exercise from './lecture/35-props-vs-states';
 
 function App() {
   return (

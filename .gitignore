@@ -3,5 +3,6 @@
 .exercises
 .utils
 node_modules
+NOTICE.md
 template.md
 dist
