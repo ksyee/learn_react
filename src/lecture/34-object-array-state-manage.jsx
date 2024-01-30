@@ -21,12 +21,7 @@ const newCat = createCatsList()[1]; // [cat, cat, cat]
 // };
 
 function CatsList() {
-  const [
-    /* 상태 = 현재 컴포넌트에서 데이터 스냅샷 (수정 불가능) */
-    cats,
-    /* 상태 업데이트 함수 실행 (트리거 -> 렌더 -> 커밋) */
-    setCats,
-  ] = useState(createCatsList);
+  const [cats, setCats] = useState(createCatsList);
 
   const handleDecreaseAge = (updateCatId) => () => {
     setCats((cats) => {
