@@ -1,4 +1,4 @@
-import Exercise from './lecture/32-react-state-management';
+import Exercise from './lecture/33-avoid-bomb';
 
 function App() {
   return (
