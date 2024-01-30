@@ -44,13 +44,13 @@ function createCatsList() {
 
 const newCat = createCatsList()[1]; // [cat {}, cat {}, cat {}]
 
-const createCatsList = () => () => {
-  catsData.map((cat) => {
-    const [year] = cat.birth.split('-');
-    const age = new Date().getFullYear() - year;
-    return { ...cat, age };
-  });
-};
+// const createCatsList = () => () => {
+//   catsData.map((cat) => {
+//     const [year] = cat.birth.split('-');
+//     const age = new Date().getFullYear() - year;
+//     return { ...cat, age };
+//   });
+// };
 
 function CatsList() {
   // 어떤 상태 ?
@@ -101,17 +101,25 @@ function CatsList() {
               src={getStaticImage(cat.imageSrc)}
               alt={cat.imageAlt}
             />
-            <button
-              type="button"
-              aria-label="삭제"
-              title="삭제"
-              // 일반적으로 리액트 사용 시, 개발자가 주로 하는 방식
-              onClick={() => handleDeleteCat(cat.id)}
-              // JS 클로저 활용 시
-              // onClick={handleDeleteCat(cat.id)}
-            >
-              ⅹ (<span className="age">{cat.age}</span>)
-            </button>
+            <div>
+              <button
+                type="button"
+                aria-label="삭제"
+                title="삭제"
+                // 일반적으로 리액트 사용 시, 개발자가 주로 하는 방식
+                onClick={() => handleDeleteCat(cat.id)}
+                // JS 클로저 활용 시
+                // onClick={handleDeleteCat(cat.id)}
+              >
+                ⅹ (<span className="age">{cat.age}</span>)
+              </button>
+              <button type="button" aria-label="고양이 나이 1 증가">
+                +
+              </button>
+              <button type="button" aria-label="고양이 나이 1 감소">
+                -
+              </button>
+            </div>
           </li>
         ))}
       </ul>
