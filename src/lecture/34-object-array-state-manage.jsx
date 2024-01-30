@@ -2,8 +2,17 @@
 
 import catsData from '../data/cats.json';
 import { getStaticImage } from '../utils';
+import { useState } from 'react';
 
 function CatsList() {
+  const [cats, setCats] = useState(catsData);
+
+  const handleDeleteCat = (deleteCatId) => () => {
+    setCats((prevCats) => {
+      return prevCats.filter((cat) => cat.id !== deleteCatId);
+    });
+  };
+
   return (
     <ul
       style={{
@@ -12,13 +21,21 @@ function CatsList() {
         marginBlock: 0,
       }}
     >
-      {catsData.map((cat) => (
+      {cats.map((cat) => (
         <li key={cat.id}>
           <img
             height={100}
             src={getStaticImage(cat.imageSrc)}
             alt={cat.imageAlt}
           />
+          <button
+            type="button"
+            aria-label="삭제"
+            title="삭제"
+            onClick={handleDeleteCat(cat.id)}
+          >
+            ❌
+          </button>
         </li>
       ))}
     </ul>
