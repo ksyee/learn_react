@@ -22,6 +22,20 @@ const newCat = createCatsList()[1];
 function CatsList() {
   const [cats, setCats] = useState(/* 초기화 함수 참조 */ createCatsList);
 
+  const handleIncreaseAge = (updateCatId) => {
+    setCats((cats) =>
+      cats.map((cat) => {
+        if (cat.id === updateCatId) {
+          return { ...cat, age: cat.age++ };
+        } else {
+          return cat;
+        }
+      })
+    );
+  };
+
+  const handleDecreaseAge = () => {};
+
   const handleDeleteCat = (deleteCatId) => {
     setCats(cats.filter((cat) => cat.id !== deleteCatId));
   };
@@ -59,10 +73,18 @@ function CatsList() {
                 marginBlockEnd: 16,
               }}
             >
-              <button type="button" aria-label="고양이 나이 1 증가">
+              <button
+                type="button"
+                aria-label="고양이 나이 1 증가"
+                onClick={handleIncreaseAge}
+              >
                 +
               </button>
-              <button type="button" aria-label="고양이 나이 1 감소">
+              <button
+                type="button"
+                aria-label="고양이 나이 1 감소"
+                onClick={handleDecreaseAge}
+              >
                 -
               </button>
               <button
