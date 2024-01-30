@@ -1,4 +1,4 @@
-import Exercise from './lecture/33-avoid-bomb';
+import Exercise from './lecture/34-object-array-state-manage';
 
 function App() {
   return (
