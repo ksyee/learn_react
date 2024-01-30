@@ -22,11 +22,11 @@ const newCat = createCatsList()[1];
 function CatsList() {
   const [cats, setCats] = useState(/* 초기화 함수 참조 */ createCatsList);
 
-  const handleIncreaseAge = (updateCatId) => {
+  const handleIncreaseAge = (updateCatId) => () => {
     setCats((cats) =>
       cats.map((cat) => {
         if (cat.id === updateCatId) {
-          return { ...cat, age: cat.age };
+          return { ...cat, age: cat.age++ };
         } else {
           return cat;
         }
@@ -34,7 +34,17 @@ function CatsList() {
     );
   };
 
-  const handleDecreaseAge = () => {};
+  const handleDecreaseAge = (updateCatId) => () => {
+    setCats((cats) => {
+      cats.map((cat) => {
+        if (cat.id === updateCatId) {
+          return { ...cat, age: cat.age-- };
+        } else {
+          return cat;
+        }
+      });
+    });
+  };
 
   const handleDeleteCat = (deleteCatId) => {
     setCats(cats.filter((cat) => cat.id !== deleteCatId));
@@ -76,14 +86,14 @@ function CatsList() {
               <button
                 type="button"
                 aria-label="고양이 나이 1 증가"
-                onClick={handleIncreaseAge}
+                onClick={handleIncreaseAge(cat.id)}
               >
                 +
               </button>
               <button
                 type="button"
                 aria-label="고양이 나이 1 감소"
-                onClick={handleDecreaseAge}
+                onClick={handleDecreaseAge(cat.id)}
               >
                 -
               </button>
