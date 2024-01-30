@@ -26,7 +26,7 @@ function CatsList() {
     setCats((cats) =>
       cats.map((cat) => {
         if (cat.id === updateCatId) {
-          return { ...cat, age: cat.age++ };
+          return { ...cat, age: cat.age };
         } else {
           return cat;
         }
