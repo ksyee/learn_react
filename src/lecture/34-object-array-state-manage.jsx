@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import catsData from '../data/cats.json';
 import { getStaticImage } from '../utils';
-import { useState } from 'react';
 
 // function callBook() {
 //   console.log('call book')
@@ -20,34 +19,31 @@ import { useState } from 'react';
 
 const newCat = catsData[2];
 
+const createCatsList = () => () => {
+  catsData.map((cat) => {
+    const [year] = cat.birth.split('-');
+    const age = new Date().getFullYear() - year;
+    return { ...cat, age };
+  });
+};
+
 function CatsList() {
   // 어떤 상태 ?
   // 고양이 집합(catsData) : Array
-  const [cats, setCats] = useState(catsData);
+  // 함수를 실행해 반환된 값이 초깃값으로 설정
+  const [cats, setCats] = useState(createCatsList);
 
-  // const handleDeleteCat =
-  //   /* 함수 컴포넌트 실행 시 바로 실행되는 래퍼 함수 */
-  //   (deleteCatId) =>
-  //     /* 이벤트 핸들러 */
-  //       (/* e */) => {
-  //       // console.log(deleteCatId);
-
-  //       // [1] 새로운 값 설정
-  //       // setCats(cats.filter((cat) => cat.id !== deleteCatId));
-
-  //       // [2] 콜백 함수: 이전 값을 연산해서 반환한 값 설정
-  //       setCats((cats) => cats.filter((cat) => cat.id !== deleteCatId));
-  //     };
-
-  const handleDeleteCat = (deleteCatId) => {
-    setCats(cats.filter((cat) => cat.id !== deleteCatId));
+  const handleDeleteCat = (deleteCatId) => () => {
+    setCats((cats) => cats.filter((cat) => cat.id !== deleteCatId));
   };
 
-  const handleAddCat = () => {
-    newCat.id = crypto.randomUUID();
-    console.log(newCat);
+  // const handleDeleteCat = (deleteCatId) => {
+  // setCats(cats.filter((cat) => cat.id !== deleteCatId));
+  // };
 
-    setCats([newCat, ...cats]);
+  const handleAddCat = () => {
+    const newCatId = crypto.randomUUID();
+    setCats([{ ...newCat, id: newCatId }, ...cats]);
   };
 
   return (
@@ -78,7 +74,7 @@ function CatsList() {
               // JS 클로저 활용 시
               // onClick={handleDeleteCat(cat.id)}
             >
-              ⅹ
+              ⅹ (<span>{cat}</span>)
             </button>
           </li>
         ))}
