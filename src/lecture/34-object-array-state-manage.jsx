@@ -9,7 +9,8 @@ const createCatsList = () =>
     return { ...cat, age };
   });
 
-const newCat = createCatsList()[1];
+// dummy data
+const newCat = createCatsList()[1]; // [cat, cat, cat]
 
 // const createCatsList = () => () => {
 //   catsData.map((cat) => {
@@ -20,19 +21,12 @@ const newCat = createCatsList()[1];
 // };
 
 function CatsList() {
-  const [cats, setCats] = useState(/* 초기화 함수 참조 */ createCatsList);
-
-  const handleIncreaseAge = (updateCatId) => () => {
-    setCats((cats) =>
-      cats.map((cat) => {
-        if (cat.id === updateCatId) {
-          return { ...cat, age: cat.age++ };
-        } else {
-          return cat;
-        }
-      })
-    );
-  };
+  const [
+    /* 상태 = 현재 컴포넌트에서 데이터 스냅샷 (수정 불가능) */
+    cats,
+    /* 상태 업데이트 함수 실행 (트리거 -> 렌더 -> 커밋) */
+    setCats,
+  ] = useState(createCatsList);
 
   const handleDecreaseAge = (updateCatId) => () => {
     setCats((cats) => {
@@ -51,10 +45,15 @@ function CatsList() {
   };
 
   const handleAddCat = () => {
-    const newCatId = crypto.randomUUID();
-
-    setCats([{ ...newCat, id: newCatId }, ...cats]);
+    setCats([{ ...newCat, id: crypto.randomUUID() }, ...cats]);
   };
+
+  const handleIncreaseAge = (updateCatId) =>
+    setCats(
+      cats.map((cat) =>
+        cat.id === updateCatId ? { ...cat, age: cat.age + 1 } : cat
+      )
+    );
 
   return (
     <>
