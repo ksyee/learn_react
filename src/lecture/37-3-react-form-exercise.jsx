@@ -16,14 +16,16 @@ function FormExample() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.target); /* <form /> */
 
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(`${key}: ${value}`);
+    // 문
+    // for (const [name, value] of formData.entries()) {
+    //   console.log({ name, value });
     // }
 
+    // 식
     Array.from(formData.entries()).map(([name, value]) => {
-      console.log(`${name}: ${value}`);
+      console.log(name, value);
     });
   };
 
