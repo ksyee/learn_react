@@ -1,14 +1,30 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { range } from '../utils';
 
 function Son({ index }) {
+  const [showTextDecoration, setShowTextDecoration] = useState(true);
+
+  const textDecoration = showTextDecoration ? 'underline' : 'none';
+
+  const handleToggleTextDecoration = () => {
+    setShowTextDecoration((prev) => !prev);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    handleToggleTextDecoration();
+  };
+
   return (
     <div>
       <h3>
         <a
           href=""
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={handleClick}
+          style={{
+            textDecoration,
+            textUnderlineOffset: 4,
+            color: 'inherit',
           }}
         >
           자식 컴포넌트 {index}
@@ -18,12 +34,12 @@ function Son({ index }) {
   );
 }
 
-function Parent({ start = 1, end = 3 }) {
+function Parent({ start = 1, end = 3, step = 1 }) {
   return (
     <div>
       <h2>부모 컴포넌트</h2>
       <ul>
-        {range(start, end).map((n) => {
+        {range(start, end, step).map((n) => {
           return (
             <li key={n}>
               <Son index={n} />
