@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { range } from 'lodash';
+// import { useState } from 'react';
+import { range } from '../utils';
 
 function Son({ index }) {
   return (
     <div>
       <h3>
         <a
-          href="/"
+          href=""
           onClick={(e) => {
             e.preventDefault();
           }}
@@ -37,9 +37,9 @@ function Parent({ start = 1, end = 3 }) {
 
 function Exercise() {
   return (
-    <>
-      <Parent start={2} end={12} />
-    </>
+    <div>
+      <Parent />
+    </div>
   );
 }
 
