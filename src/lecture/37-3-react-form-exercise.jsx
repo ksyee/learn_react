@@ -1,8 +1,5 @@
-import { FormInput } from '@/components';
-import { useState } from 'react';
-
 // [학습 목표]
-// 폼 상태 개별 관리 → 폼의 상태를 하나의 객체로 묶어서 관리
+// 제어 컴포넌트 말고, 제어하지 않는 방식으로 폼 전송하기
 
 function Exercise() {
   return (
@@ -15,75 +12,56 @@ function Exercise() {
 
 const INITIAL_FEEL_MESSAGE = '공부하기 좋은 날이네~';
 
-const INITIAL_FORM_DATA = {
-  feelMessage: INITIAL_FEEL_MESSAGE,
-  email: '',
-  agree: '아니오', // '아니오'
-  studySubject: 'react',
-};
-
 function FormExample() {
-  // 하나의 폼 상태 관리
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
-
-  // const handleChange = (e) => {
-  // const { name, value } = e.target;
-  // console.log(name, value);
-
-  // object.property
-  // 각괄호 표기 방법
-  // object[key]
-
-  // formData { feelMessage, agree, email }
-  // formData.agree
-  // formData['agree']
-
-  // 사용자와 상호작용한 다음 렌더링 턴에서 적용되는 상태 값
-  // const nextFormData = {
-  //   ...formData,
-  //   [name]: value,
-  // };
-
-  /* 
-      nextFormData = {
-        feelMessage: '...',
-        agree: '...',
-        email: '...',
-        ['feelMessage']: '...',
-      }
-    */
-
-  //   setFormData(nextFormData);
-  // };
-
   const handleSubmit = (e) => {
-    // 브라우저 기본 동작 중지
     e.preventDefault();
-    console.log(formData);
-  };
 
-  const handleReset = () => {
-    setFormData(INITIAL_FORM_DATA);
+    const formData = new FormData(e.target);
+
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(`${key}: ${value}`);
+    // }
+
+    Array.from(formData.entries()).map(([name, value]) => {
+      console.log(`${name}: ${value}`);
+    });
   };
 
   return (
     <>
       <form
         onSubmit={handleSubmit}
-        onReset={handleReset}
         style={{ display: 'flex', flexFlow: 'column', gap: 20 }}
       >
-        <FormInput
-          name="feelMessage"
-          label="오늘 기분"
-          placeholder={INITIAL_FEEL_MESSAGE}
-        />
-        <FormInput
-          name="email"
-          label="이메일"
-          type="email"
-          placeholder="user@company.dev"
-        />
+        <div
+          style={{
+            display: 'flex',
+            gap: 4,
+          }}
+        >
+          <label htmlFor="feelMessage">오늘 기분</label>
+          <input
+            type="text"
+            id="feelMessage"
+            name="feelMessage"
+            placeholder={INITIAL_FEEL_MESSAGE}
+          />
+        </div>
+
+        <div
+          style={{
+            display: 'flex',
+            gap: 4,
+          }}
+        >
+          <label htmlFor="email">이메일</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="user@company.dev"
+          />
+        </div>
 
         <div data-label="라디오 버튼(인풋)">
           <label>
