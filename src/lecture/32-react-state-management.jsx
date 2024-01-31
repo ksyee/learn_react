@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { CountUp } from '../components';
+import { CountUp } from '@/components';
 
 function Exercise() {
   const [count, setCount] = useState(0);

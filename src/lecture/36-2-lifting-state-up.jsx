@@ -1,20 +1,24 @@
 import { useState } from 'react';
 import { range } from '../utils';
 
-function Son({ isActive, value, onActive, index }) {
+function Son({ index, isActive, onActive, value }) {
   // const [state, setState] = React.useState(initialValue);
-
   // const [showTextDecoration, setShowTextDecoration] = useState(true);
+  // const handleToggleTextDecoration = () => {
+  //   // setShowTextDecoration((s) => !s);
+  //   setShowTextDecoration(!showTextDecoration);
+  // };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   handleToggleTextDecoration();
+  // };
 
   const textDecoration = isActive ? 'underline' : 'none';
   const color = isActive ? '#dd3c87' : 'inherit';
 
-  // const handleToggleTextDecoration = () => {
-  //   setShowTextDecoration(!showTextDecoration);
-  // };
-
   const handleClick = (e) => {
     e.preventDefault();
+    // 부모에서 전달받은 부모의 상태를 업데이트 할 수 있는 함수를 여기서 실행
     onActive(index);
   };
 
@@ -37,11 +41,16 @@ function Son({ isActive, value, onActive, index }) {
   );
 }
 
-function Parent({ start = 1, end = 3, step = 1 }) {
-  const [activeIndex, setActiveIndex] = useState(1);
+function Parent({ start = 10, end = 30, step = 10 }) {
+  // 어떤 상태를 가져야 what으로 제어가 가능할까? (<input type="radio" />)
+  // - [ ] 사용자가 클릭한 하위 컴포넌트는 활성화가 되어야 한다.
+  // - [ ] 활성화된 하위 컴포넌트의 형제 컴포넌트는 모두 비활성화 되어야 한다.
+
+  // 선언된 상태 (리액트를 통해 UI를 제어하려고)
+  const [activeIndex, updateActiveIndex] = useState(2);
 
   const handleChangeActiveSon = (sonIndex) => {
-    setActiveIndex(sonIndex);
+    updateActiveIndex(sonIndex);
   };
 
   return (
@@ -55,8 +64,8 @@ function Parent({ start = 1, end = 3, step = 1 }) {
             <li key={n}>
               <Son
                 index={index}
-                isActive={activeSon}
                 value={n}
+                isActive={activeSon}
                 onActive={handleChangeActiveSon}
               />
             </li>
