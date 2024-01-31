@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CountUp } from '@/components';
 
 function Exercise() {
