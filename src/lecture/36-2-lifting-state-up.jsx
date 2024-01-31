@@ -2,12 +2,16 @@ import { useState } from 'react';
 import { range } from '../utils';
 
 function Son({ index }) {
+  // const [state, setState] = React.useState(initialValue);
+
   const [showTextDecoration, setShowTextDecoration] = useState(true);
 
   const textDecoration = showTextDecoration ? 'underline' : 'none';
+  const color = showTextDecoration ? '#dd3c87' : 'inherit';
 
   const handleToggleTextDecoration = () => {
-    setShowTextDecoration((prev) => !prev);
+    // setShowTextDecoration((s) => !s);
+    setShowTextDecoration(!showTextDecoration);
   };
 
   const handleClick = (e) => {
@@ -22,9 +26,9 @@ function Son({ index }) {
           href=""
           onClick={handleClick}
           style={{
+            color,
             textDecoration,
             textUnderlineOffset: 4,
-            color: 'inherit',
           }}
         >
           자식 컴포넌트 {index}
