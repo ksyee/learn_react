@@ -1,3 +1,4 @@
+import classes from './36-lifting-state-up.module.css';
 import { useState } from 'react';
 import { A11yHidden } from '../components';
 import classes from './36-lifting-state-up.module.css';
@@ -10,22 +11,13 @@ import classes from './36-lifting-state-up.module.css';
 // - 컴포넌트 사이에 상태를 공유하려면?
 //   공유하려는 컴포넌트 들의 가장 가까운 상위 컴포넌트로 상태를 끌어올려야 한다.
 
-function AccordionPanel({ isOpen = false, onToggle, children }) {
-  return (
-    <div className={classes.AccordionPanel}>
-      <button type="button" onClick={onToggle}>
-        {isOpen ? '닫음' : '열림'}
-      </button>
-      <div hidden={!isOpen}>{children}</div>
-    </div>
-  );
-}
-
+// states → Stateful component (container)
 function Accordion() {
   const headlineId = crypto.randomUUID();
+
   const [openedPanelIndex, setOpenedPanelIndex] = useState(0);
 
-  const handleOpenPanel = (panelIndex) => {
+  const handleOpenPannel = (panelIndex) => {
     setOpenedPanelIndex(panelIndex);
   };
 
@@ -35,20 +27,38 @@ function Accordion() {
         아코디언을 사용해 컴포넌트 간 상태 공유
       </A11yHidden>
       <AccordionPanel
-        data-index={0}
+        index={0}
         isOpen={openedPanelIndex === 0}
-        onToggle={handleOpenPanel}
+        onToggle={handleOpenPannel}
       >
         <p>아코디언 컴포넌트는 ..... 1</p>
       </AccordionPanel>
       <AccordionPanel
-        data-index={1}
+        index={1}
         isOpen={openedPanelIndex === 1}
-        onToggle={handleOpenPanel}
+        onToggle={handleOpenPannel}
       >
         <p>아코디언 컴포넌트는 ..... 2</p>
       </AccordionPanel>
     </article>
+  );
+}
+
+// props → Stateless component (presentation)
+function AccordionPanel({
+  isOpen = false,
+  index,
+  onToggle,
+  children,
+  ...restProps
+}) {
+  return (
+    <div className={classes.AccordionPanel} {...restProps}>
+      <button type="button" onClick={() => onToggle(index)}>
+        {isOpen ? '닫음' : '열림'}
+      </button>
+      <div hidden={!isOpen}>{children}</div>
+    </div>
   );
 }
 
