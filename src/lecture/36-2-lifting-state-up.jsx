@@ -1,22 +1,21 @@
 import { useState } from 'react';
 import { range } from '../utils';
 
-function Son({ index }) {
+function Son({ isActive, value, onActive, index }) {
   // const [state, setState] = React.useState(initialValue);
 
-  const [showTextDecoration, setShowTextDecoration] = useState(true);
+  // const [showTextDecoration, setShowTextDecoration] = useState(true);
 
-  const textDecoration = showTextDecoration ? 'underline' : 'none';
-  const color = showTextDecoration ? '#dd3c87' : 'inherit';
+  const textDecoration = isActive ? 'underline' : 'none';
+  const color = isActive ? '#dd3c87' : 'inherit';
 
-  const handleToggleTextDecoration = () => {
-    // setShowTextDecoration((s) => !s);
-    setShowTextDecoration(!showTextDecoration);
-  };
+  // const handleToggleTextDecoration = () => {
+  //   setShowTextDecoration(!showTextDecoration);
+  // };
 
   const handleClick = (e) => {
     e.preventDefault();
-    handleToggleTextDecoration();
+    onActive(index);
   };
 
   return (
@@ -31,7 +30,7 @@ function Son({ index }) {
             textUnderlineOffset: 4,
           }}
         >
-          자식 컴포넌트 {index}
+          자식 컴포넌트 {value}
         </a>
       </h3>
     </div>
@@ -39,14 +38,27 @@ function Son({ index }) {
 }
 
 function Parent({ start = 1, end = 3, step = 1 }) {
+  const [activeIndex, setActiveIndex] = useState(1);
+
+  const handleChangeActiveSon = (sonIndex) => {
+    setActiveIndex(sonIndex);
+  };
+
   return (
     <div>
       <h2>부모 컴포넌트</h2>
       <ul>
-        {range(start, end, step).map((n) => {
+        {range(start, end, step).map((n, index) => {
+          const activeSon = activeIndex === index;
+
           return (
             <li key={n}>
-              <Son index={n} />
+              <Son
+                index={index}
+                isActive={activeSon}
+                value={n}
+                onActive={handleChangeActiveSon}
+              />
             </li>
           );
         })}
