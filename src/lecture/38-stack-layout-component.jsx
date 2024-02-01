@@ -56,7 +56,28 @@ function Form() {
   };
 
   const handleChangePizzaToppings = (e) => {
-    console.log(e.target.value);
+    const { value: topping, checked: isChecked } = e.target;
+
+    console.log('이전 토핑 목록: ', orderState.toppings);
+
+    let nextToppings = [];
+
+    if (isChecked) {
+      nextToppings = [...orderState.toppings, topping];
+    } else {
+      nextToppings = orderState.toppings.filter((t) => t !== topping);
+    }
+
+    console.log('다음 토핑 목록: ' + nextToppings);
+
+    // const nextToppings = [];
+
+    // const nextOrderState = {
+    //   ...orderState,
+    //   toppings: nextToppings,
+    // };
+
+    // setOrderState(nextOrderState);
   };
 
   const handleOrder = (e) => {
