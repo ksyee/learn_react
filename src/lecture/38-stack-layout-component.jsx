@@ -46,19 +46,34 @@ function Form() {
   };
 
   const handleChangeAllToppings = (e) => {
-    setOrderState((prev) => ({
-      ...prev,
-      isAllToppings: e.target.checked,
-    }));
+    setOrderState(
+      /* nextOrderState step 1 */
+      // [1] isAllToppings 상태 업데이트
+      // ❌ 리액트가 리-렌더링을 시도합니다.
+      (orderState /* { isAllToppings: false } */) => ({
+        ...orderState,
+        isAllToppings: e.target.checked, // false => true
+      })
+    );
 
-    setOrderState((prev) => ({
-      ...prev,
-      toppings: prev.isAllToppings ? PIZZA.toppings : [],
-    }));
+    setOrderState(
+      /* nextOrderState step 2 */
+      // [2] toppings 상태 조건부 업데이트
+      // ❌ 리액트가 리-렌더링을 시도합니다.
+      (orderState /* { isAllToppings: true } */) => ({
+        ...orderState,
+        toppings: orderState.isAllToppings /* true */ ? PIZZA.toppings : [],
+      })
+    );
+
+    // 리액트는 효과적인 업데이트를 위해서 배치(일괄) 업데이트
+    // 리-렌더링 1회
   };
 
   const handleChangePizzaToppings = (e) => {
     const { value: topping, checked: isChecked } = e.target;
+
+    console.log('이전 토핑 목록: ', orderState.toppings);
 
     let nextToppings = [];
 
@@ -121,6 +136,7 @@ function Form() {
           key={topping}
           name="topping"
           value={topping}
+          checked={orderState.toppings.includes(topping)}
           onChange={handleChangePizzaToppings}
         >
           {topping}
