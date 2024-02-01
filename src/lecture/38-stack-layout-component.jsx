@@ -1,13 +1,14 @@
 import { Stack } from '@/components';
+import './38-stack-layout-component.css';
 
 function Exercise() {
   return (
-    <Stack vertical gap={0} my={20} mx={20}>
+    <Stack gap={0} my={20} mx={20}>
       <h2>Exercise</h2>
       <Stack>
-        <p>Do 10 pushups</p>
-        <p>Do 10 squats</p>
-        <p>Do 10 situps</p>
+        <p>아이템1</p>
+        <p>아이템2</p>
+        <p>아이템3</p>
       </Stack>
     </Stack>
   );
