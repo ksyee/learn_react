@@ -12,7 +12,7 @@ function FormInput({
   gap = 4,
   style: customStyle,
   hiddenLabel = false,
-  inputProps,
+  inputProps = {},
   ...restProps
 }) {
   const id = useId();

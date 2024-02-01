@@ -1,31 +1,44 @@
-import { useState } from 'react';
 import { FormInput, Stack } from '@/components';
+import { useState } from 'react';
 
-const KEYWORDS =
-  '리액트, 뷰, 리액트 라우터, 텐스택 쿼리, 그래프 쿼리, 넥스트 제이에스, 엑시오스'.split(
-    ', '
-  );
+const KEYWORDS = [
+  '리액트',
+  '뷰',
+  '스타일드 컴포넌트',
+  '리액트 라우터',
+  '탠스텍 쿼리',
+  '그래프 쿼리',
+  '넥스트 제이에스',
+  '츄스탄트',
+  '뷰 라우터',
+  '엑시오스',
+];
 
 Object.freeze(KEYWORDS);
 
-export default function Exercise() {
+function Exercise() {
   return (
-    <div>
-      <h2>검색 폼</h2>
+    <Stack vertical my={20}>
+      <h2 style={{ marginBlock: 0 }}>검색 폼</h2>
       <SearchForm />
-    </div>
+    </Stack>
   );
 }
 
 function SearchForm() {
   // 상태 (시간의 흐름에 따라 값이 변함)
+  // [2] 상태를 복잡한 객체로 묶어서 관리할 필요가 있나???
+  // [3] 복잡한 상태 관리를 간단하게 줄여야겠다.
+  // [4] 상태 관리 코드를 수정하자!
   const [query, setQuery] = useState('');
 
   const handleQuery = (e) => {
-    setQuery(setQuery(e.target.value));
+    setQuery(e.target.value);
   };
 
-  // 파생된 상태(derived state)란? (선언된 상태에 의존하여 값이 변경되는 상태)
+  // 파생된 상태(derived state)란?
+  // (선언된 상태에 의존하여 값이 변경되는 상태)
+  // [1] KEYWORDS 배열에서 query 값을 가진 항목만 거른 배열이 필요해!
 
   const filteredKeywords = KEYWORDS.filter((keyword) =>
     keyword.includes(query)
@@ -33,16 +46,17 @@ function SearchForm() {
 
   return (
     <Stack vertical gap={20}>
-      <form action="">
+      <form>
         <FormInput
-          type="search"
+          value={query}
           onChange={handleQuery}
+          type="search"
           label="학습 주제"
-          placeholder="공부할 주제를 검색어로 입력"
+          placeholder="학습 주제 입력"
           hiddenLabel
           inputProps={{
             style: {
-              padding: '4px 12px',
+              padding: '4px 6px',
             },
           }}
         />
@@ -53,14 +67,14 @@ function SearchForm() {
         gap={8}
         style={{ marginBlock: 0, paddingInlineStart: 0, listStyle: 'none' }}
       >
-        {filteredKeywords.map((keywords) => {
-          return (
-            <li key={keywords} style={{ fontSize: 14 }}>
-              {keywords}
-            </li>
-          );
-        })}
+        {filteredKeywords.map((keyword) => (
+          <li key={keyword} style={{ fontSize: 14 }}>
+            {keyword}
+          </li>
+        ))}
       </Stack>
     </Stack>
   );
 }
+
+export default Exercise;
