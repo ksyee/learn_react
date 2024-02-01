@@ -46,10 +46,14 @@ function Form() {
   };
 
   const handleChangeAllToppings = (e) => {
-    setOrderState({
+    setOrderState((orderState) => ({
       ...orderState,
       isAllToppings: e.target.checked,
-    });
+    }));
+    setOrderState((orderState) => ({
+      ...orderState,
+      toppings: orderState.isAllToppings ? PIZZA.toppings : [],
+    }));
   };
 
   const handleChangePizzaToppings = (e) => {
@@ -73,7 +77,7 @@ function Form() {
       isAllToppings: hasFullFilledToppings,
     };
 
-    console.log('다음 토핑 목록: ' + nextToppings, hasFullFilledToppings);
+    console.log('다음 토핑 목록: ', nextToppings, hasFullFilledToppings);
 
     setOrderState(nextOrderState);
   };
