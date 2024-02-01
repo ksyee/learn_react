@@ -1,0 +1,10 @@
+.Stack {
+  --display: flex;
+  --direction: row;
+  --wrap: nowrap;
+  --gap: 8px;
+
+  display: var(--display);
+  flex-flow: var(--direction) var(--wrap);
+  gap: var(--gap);
+}
