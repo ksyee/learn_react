@@ -1,4 +1,4 @@
-import { app as appClasName } from './App.module.css';
+import { app as appClassName } from './App.module.css';
 import Exercise from '@/lecture/39-search-debouncing';
 
 function App() {

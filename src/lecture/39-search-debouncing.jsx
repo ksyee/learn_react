@@ -1,5 +1,6 @@
 import { FormInput, Stack } from '@/components';
 import { useState } from 'react';
+import { debounce } from '../utils';
 
 const KEYWORDS = [
   '리액트',
@@ -48,8 +49,9 @@ function SearchForm() {
     <Stack vertical gap={20}>
       <form>
         <FormInput
-          value={query}
-          onChange={handleQuery}
+          // value={query}
+          defaultValue={query}
+          onChange={debounce(handleQuery, 300)}
           type="search"
           label="학습 주제"
           placeholder="학습 주제 입력"
