@@ -46,31 +46,18 @@ function Form() {
   };
 
   const handleChangeAllToppings = (e) => {
-    setOrderState(
-      /* nextOrderState step 1 */
-      // [1] isAllToppings 상태 업데이트
-      // ❌ 리액트가 리-렌더링을 시도합니다.
-      (orderState /* { isAllToppings: false } */) => ({
-        ...orderState,
-        isAllToppings: e.target.checked, // false => true
-      })
-    );
-
-    setOrderState(
-      /* nextOrderState step 2 */
-      // [2] toppings 상태 조건부 업데이트
-      // ❌ 리액트가 리-렌더링을 시도합니다.
-      (orderState /* { isAllToppings: true } */) => ({
-        ...orderState,
-        toppings: orderState.isAllToppings /* true */ ? PIZZA.toppings : [],
-      })
-    );
-
-    // 리액트는 효과적인 업데이트를 위해서 배치(일괄) 업데이트
-    // 리-렌더링 1회
+    setOrderState({
+      ...orderState,
+      isAllToppings: e.target.checked,
+      toppings: e.target.checked ? PIZZA.toppings : [],
+    });
   };
 
   const handleChangePizzaToppings = (e) => {
+    if (orderState.toppings.length > 2) {
+      return alert('토핑은 3개까지만 선택 가능합니다.');
+    }
+
     const { value: topping, checked: isChecked } = e.target;
 
     console.log('이전 토핑 목록: ', orderState.toppings);
