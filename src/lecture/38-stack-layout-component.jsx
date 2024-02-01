@@ -15,8 +15,14 @@ function Exercise() {
 }
 
 const PIZZA = {
-  types: '밀라노 스폰티니 피자, 시찰리아 칼초네 피자, 시카고 피자'.split(', '),
-  toppings: '새우, 고구마, 감자, 올리브, 페페로니'.split(', '),
+  types:
+    '밀라노 스폰티니 피자, 시찰리아 칼초네 피자, 시카고 피자, 페페로니 피자, 하와이안 피자'.split(
+      ', '
+    ),
+  toppings:
+    '새우, 고구마, 감자, 올리브, 페페로니, 치즈, 파인애플, 가지, 불고기'.split(
+      ', '
+    ),
 };
 
 const INITIAL_ORDER = {
@@ -52,7 +58,7 @@ function Form() {
   return (
     <form>
       <h3>피자 타입을 선택하세요.</h3>
-      {PIZZA.types.map((pizzaType) => {
+      {PIZZA.types.map((pizzaType) => (
         <FormChecker
           name="type"
           key={pizzaType}
@@ -61,8 +67,9 @@ function Form() {
           onChange={handleChangePizzaType}
         >
           {pizzaType}
-        </FormChecker>;
-      })}
+        </FormChecker>
+      ))}
+
       <h3>피자 토핑을 추가합니다.</h3>
       <FormChecker
         checkbox
@@ -71,13 +78,13 @@ function Form() {
       >
         전체 선택
       </FormChecker>
-      {PIZZA.toppings.map((topping) => {
-        <FormChecker key={topping} checkbox name="topping">
+      {PIZZA.toppings.map((topping) => (
+        <FormChecker key={topping} checkbox name="topping" value={topping}>
           {topping}
-        </FormChecker>;
-      })}
+        </FormChecker>
+      ))}
 
-      <Stack as="article" aria-label="주문컨트롤" gap={4} my={16}>
+      <Stack gap={4} my={16}>
         <button type="submit">주문</button>
         <button type="reset">취소</button>
       </Stack>
