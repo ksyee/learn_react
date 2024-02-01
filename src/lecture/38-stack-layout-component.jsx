@@ -46,13 +46,14 @@ function Form() {
   };
 
   const handleChangeAllToppings = (e) => {
-    setOrderState((orderState) => ({
-      ...orderState,
+    setOrderState((prev) => ({
+      ...prev,
       isAllToppings: e.target.checked,
     }));
-    setOrderState((orderState) => ({
-      ...orderState,
-      toppings: orderState.isAllToppings ? PIZZA.toppings : [],
+
+    setOrderState((prev) => ({
+      ...prev,
+      toppings: prev.isAllToppings ? PIZZA.toppings : [],
     }));
   };
 
