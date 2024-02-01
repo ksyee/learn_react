@@ -1,7 +1,6 @@
 import { FormInput, Stack } from '@/components';
 import { debounce } from '@/utils';
 import { useState } from 'react';
-import { debounce } from '../utils';
 
 const KEYWORDS = [
   '리액트',

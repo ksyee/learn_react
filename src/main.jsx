@@ -1,4 +1,5 @@
 import '@/styles/main.css';
+import '@/styles/tailwind.css';
 // import '@/styles/avoid-bomb.css';
 
 import { StrictMode } from 'react';
