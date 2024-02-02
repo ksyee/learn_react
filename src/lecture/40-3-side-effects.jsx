@@ -118,7 +118,6 @@ function DataTable({ contents }) {
 
   return (
     <table className={tableStyle}>
-      <CountUpDown />
       <A11yHidden as="caption">표 제목</A11yHidden>
       <colgroup>
         <col width="160" />
