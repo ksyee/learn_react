@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import A11yHidden from '@/components/A11yHidden/A11yHidden-v3';
+import Stack from '@/components/Stack/Stack';
 
 const API = `${
   import.meta.env.VITE_PB_API
@@ -17,7 +19,7 @@ async function fetchProducts(options) {
   }
 }
 
-function Exercise() {
+export default function Exercise() {
   const [isLoading, setIsLoading] = useState(true);
   const [tableContents, setTableContents] = useState([]);
 
@@ -62,13 +64,57 @@ function Exercise() {
   );
 }
 
+function CountUpDown() {
+  const [count, setCount] = useState(0);
+
+  const handleInc = () => {
+    const nextCount = count + 1;
+    setCount(nextCount);
+  };
+
+  const handleDec = () => {
+    const nextCount = count - 1;
+    setCount(nextCount);
+  };
+
+  const buttonStyle = 'px-4 py-1 bg-sky-800 text-white rounded-md';
+
+  return (
+    <Stack gap>
+      <button
+        type="button"
+        className={buttonStyle}
+        onClick={handleDec}
+        aria-label="1 감소"
+      >
+        -
+      </button>
+      <span>{count}</span>
+      <button
+        type="button"
+        className={buttonStyle}
+        onClick={handleInc}
+        aria-label="1 증가"
+      >
+        +
+      </button>
+    </Stack>
+  );
+}
+
 function DataTable({ contents }) {
+  const tableStyle = 'w-full border-2 border-solid border-sky-600';
+  const borderStyle = 'border border-solid border-sky-600';
+
   return (
     <table className={tableStyle}>
+      <CountUpDown />
       <A11yHidden as="caption">표 제목</A11yHidden>
-      <col width="160" />
-      <col width="240" />
-      <col width="100" />
+      <colgroup>
+        <col width="160" />
+        <col width="240" />
+        <col width="100" />
+      </colgroup>
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -80,8 +126,8 @@ function DataTable({ contents }) {
         {contents?.map((content) => (
           <tr key={content.id}>
             <td className={borderStyle}>{content.id}</td>
-            <td className={borderStyle}>{content.title}</td>
-            <td className={borderStyle}>{content.color}</td>
+            <td className={borderStyle}>{content.name}</td>
+            <td className={borderStyle}>{content.created}</td>
           </tr>
         ))}
       </tbody>
