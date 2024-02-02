@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import A11yHidden from '@/components/A11yHidden/A11yHidden-v3';
-import Stack from '@/components/Stack/Stack';
+import { A11yHidden, Stack } from '@/components';
+import { useEffect, useState } from 'react';
 
 const API = `${
   import.meta.env.VITE_PB_API
@@ -57,42 +56,53 @@ export default function Exercise() {
   return (
     <div>
       <h2 className="text-2xl text-indigo-500 mt-7">Exercise</h2>
-
+      <CountUpDown />
       <DataTable contents={tableContents} />
       <DataTableItemCount count={tableContentsLength} />
     </div>
   );
 }
 
+const COUNT_KEY = 'count';
+
+// persist local storage
+
+const getLocalStorageCount = () => {
+  const count = JSON.parse(localStorage.getItem(COUNT_KEY));
+  return count ?? 0;
+};
+
 function CountUpDown() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(getLocalStorageCount);
 
   const handleInc = () => {
     const nextCount = count + 1;
+    localStorage.setItem(COUNT_KEY, JSON.stringify(nextCount));
     setCount(nextCount);
   };
 
   const handleDec = () => {
     const nextCount = count - 1;
+    localStorage.setItem(COUNT_KEY, JSON.stringify(nextCount));
     setCount(nextCount);
   };
 
   const buttonStyle = 'px-4 py-1 bg-sky-800 text-white rounded-md';
 
   return (
-    <Stack gap>
+    <Stack gap={6}>
       <button
-        type="button"
         className={buttonStyle}
+        type="button"
         onClick={handleDec}
         aria-label="1 감소"
       >
         -
       </button>
-      <span>{count}</span>
+      <output className="text-2xl font-bold">{count}</output>
       <button
-        type="button"
         className={buttonStyle}
+        type="button"
         onClick={handleInc}
         aria-label="1 증가"
       >
