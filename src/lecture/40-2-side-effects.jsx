@@ -116,11 +116,9 @@ function Exercise() {
           사용되어야 한다.
         </li>
       </ul>
-
       <Button count={productsCount} onClick={handleEffectNetworkReqRes}>
         상품 요청
       </Button>
-
       {products && (
         <Stack as="ul" vertical gap={12}>
           {products.map((product) => (
@@ -148,29 +146,67 @@ function Exercise() {
 }
 
 function Message({ message }) {
-  useEffect(() => {
-    const handleMove = (e) => {
-      console.log({ x: e.clientX, y: e.clientY });
-    };
+  useEffect(
+    () => {
+      const handleMove = (e) => {
+        console.log({ x: e.clientX, y: e.clientY });
+      };
 
-    // 이벤트 청취(구독)
-    globalThis.addEventListener('mousemove', handleMove);
+      // 이벤트 청취(구독)
+      globalThis.addEventListener('mousemove', handleMove);
 
-    // 이벤트 청취 해제(구독 취소)
-    return function cleanup() {
-      globalThis.removeEventListener('mousemove', handleMove);
-    };
-  }, []);
+      // 이벤트 청취 해제(구독 취소)
+      // 필요한 경우 정리 수행
+      return () => {
+        globalThis.removeEventListener('mousemove', handleMove);
+      };
+    },
+    // 종속성 배열 - 배열을 설정하지 않을 경우 매 렌더링 마다 실행
+    // 빈 배열을 설정할 경우 최초 1회 렌더링 시에만 실행
+    // 종속성 배열에 특정 값이 존재할 경우 해당 값이 변경될 때마다 실행
+    []
+  );
 
   return <p>{message}</p>;
 }
 
-function Button({ renderCount = 0, children, ...restProps }) {
+function Button({ count = 0, children, ...restProps }) {
+  //* 의존하지 않는 이펙트 설정 함수
+  useEffect(() => {});
+
+  //* DOM 커밋 이후에 실행되는 이펙트 설정 함수
+  useEffect(() => {}, []);
+
+  //* props에 의존하는 이펙트 설정 함수
+  // - count 속성이 변경되면 그때마다 실행
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
+
+  const [emoji, setEmoji] = useState('😀');
+
+  //* state에 의존하는 이펙트 설정 함수
+  useEffect(() => {
+    console.log(`emoji: ${emoji}`);
+  }, [emoji]);
   return (
-    <button type="button" {...restProps}>
-      {children} ({renderCount})
+    <button
+      type="button"
+      {...restProps}
+      onMouseEnter={() => {
+        setEmoji(getRandomEmoji());
+      }}
+    >
+      {emoji} {children} ({count})
     </button>
   );
 }
+
+const getRandomEmoji = () => {
+  const { emojies } = getRandomEmoji;
+  return emojies[Math.floor(Math.random() * emojies.length) * 1];
+};
+
+getRandomEmoji.emojies = ['😀', '😎', '😍', '😜', '😂', '😇', '😡'];
 
 export default Exercise;
