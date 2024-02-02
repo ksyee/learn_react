@@ -40,12 +40,8 @@ function Exercise() {
   // - 네트워크를 통해 서버에 요청하여 응답되기 까지 시간이 요구되는데
   //   리액트의 렌더링 프로세스는 동기적으로 처리되므로 렌더링과 관련이 없다.
   const productsPromise = fetch(
-    `${
-      import.meta.env.VITE_PB_API
-    }/api/collections/products/records?page=2&perPage=2`
+    `${import.meta.env.VITE_PB_API}/api/collections/original_contents/records`
   );
-
-  console.log(productsPromise);
 
   // productsPromise
   // .then((response) => response.json())
@@ -63,6 +59,8 @@ function Exercise() {
 
   // ---------------------------------------------------------------------------
 
+  const handleEffectDomAccess = () => {};
+
   return (
     <Stack vertical className="mx-6">
       <h2 className="text-2xl mt-4">부수 효과(Side Effects)</h2>
@@ -70,21 +68,7 @@ function Exercise() {
       <Button
         className="button"
         renderCount={renderCount}
-        onClick={() => {
-          console.log(document.querySelectorAll('.button'));
-
-          document.querySelectorAll('.button').forEach((button) => {
-            button.style.cssText = `
-              color: #2481af;
-            `;
-            button.addEventListener('click', (e) => {
-              const color = getComputedStyle(e.target, null).getPropertyValue(
-                'color'
-              );
-              console.log(color);
-            });
-          });
-        }}
+        onClick={handleEffectDomAccess}
       >
         순수 함수
       </Button>
