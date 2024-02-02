@@ -4,7 +4,7 @@ import {
   useRef /* 참조 */,
 } from 'react';
 
-function Exercise() {
+export default function Exercise() {
   // 리액트의 방식
   useEffect(() => {}, []);
 
@@ -55,6 +55,11 @@ function Exercise() {
     };
   }, []);
 
+  // useRef의 다른 쓰임새
+  // 함수는 매번 실행될 때마다 실행 영역이 초기화되기때문에 어떤 값을 기억할 수 없다.
+  // 그런데 리액트에서는 상태를 사용하면 매번 실행될 때마다 기억이 가능하다.
+  // 하지만 어떤 경우 컴포넌트를 재 실행하지 않고 특정 값을 기억하고 싶다.
+
   return (
     <>
       <div className="container">
@@ -69,5 +74,3 @@ function Exercise() {
     </>
   );
 }
-
-export default Exercise;
