@@ -71,9 +71,7 @@ function Form() {
 
   const handleChangePizzaToppings = (e) => {
     const { value: topping } = e.target;
-
     const toppingsCount = orderState.toppings.length;
-
     const isToppingChecked = orderState.toppings.includes(topping);
 
     // 토핑 갯수를 3개로 제한, 조건 처리
