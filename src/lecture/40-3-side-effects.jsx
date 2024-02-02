@@ -33,12 +33,14 @@ export default function Exercise() {
     };
   }, []);
 
-  return (
-    <div className="text-2xl text-indigo-500 mt-7">
-      <h2>Exercise</h2>
+  const tableContentsLegnth = tableContents?.length;
 
-      <DataTable contents={tableContent} />
-      <DataTableItemCount count={tableContentLength} />
+  return (
+    <div>
+      <h2 className="text-2xl text-indigo-500 mt-7">Exercise</h2>
+
+      <DataTable contents={tableContents} />
+      <DataTableItemCount count={tableContentsLegnth} />
     </div>
   );
 }
@@ -71,5 +73,9 @@ function DataTable({ contents }) {
 }
 
 function DataTableItemCount({ count }) {
-  return <output className="mt-4 block">{count}</output>;
+  return (
+    <output className="mt-2 block py-1 px-2 rounded border border-solid border-sky-600">
+      {count}
+    </output>
+  );
 }
