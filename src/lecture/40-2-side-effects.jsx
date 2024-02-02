@@ -1,4 +1,5 @@
 import { Stack } from '@/components';
+import { useId } from 'react';
 import { useState, useEffect } from 'react';
 
 const API_ENDPOINT = `${
@@ -86,6 +87,13 @@ function Exercise() {
       .catch((error) => console.error(error));
   };
 
+  const displayCheckId = useId();
+  const [isShow, setIsShow] = useState(false);
+
+  const handleToggle = () => {
+    setIsShow((prev) => !prev);
+  };
+
   return (
     <Stack vertical className="mx-6">
       <h2 className="text-2xl mt-4">부수 효과(Side Effects)</h2>
@@ -121,8 +129,39 @@ function Exercise() {
           ))}
         </Stack>
       )}
+      <Stack>
+        <input
+          type="checkbox"
+          id={displayCheckId}
+          checked={isShow}
+          onChange={handleToggle}
+        />
+        <label htmlFor={displayCheckId}>
+          {isShow ? '메시지 감춤' : '메시지 표시'}
+        </label>
+        {isShow && <Message message="클린업이 중요하다" />}
+      </Stack>
     </Stack>
   );
+}
+
+function Message({ message }) {
+  useEffect(() => {
+    const handleMove = (e) => {
+      console.log({ x: e.clientX, y: e.clientY });
+    };
+
+    // 이벤트 핸들러 등록
+    globalThis.addEventListener('mousemove', handleMove);
+
+    // 클린업 함수
+    return () => {
+      // 이벤트 핸들러 해제
+      globalThis.removeEventListener('mousemove', handleMove);
+    };
+  }, []);
+
+  return <p>{message}</p>;
 }
 
 function Button({ renderCount = 0, children, ...restProps }) {
