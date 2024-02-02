@@ -1,6 +1,5 @@
 import { Stack } from '@/components';
-import { useId } from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId } from 'react';
 
 const API_ENDPOINT = `${
   import.meta.env.VITE_PB_API
@@ -129,17 +128,20 @@ function Exercise() {
           ))}
         </Stack>
       )}
-      <Stack>
-        <input
-          type="checkbox"
-          id={displayCheckId}
-          checked={isShow}
-          onChange={handleToggle}
-        />
-        <label htmlFor={displayCheckId}>
-          {isShow ? '메시지 감춤' : '메시지 표시'}
-        </label>
-        {isShow && <Message message="클린업이 중요하다" />}
+
+      <Stack vertical gap={6} my={20}>
+        <Stack>
+          <input
+            type="checkbox"
+            id={displayCheckId}
+            checked={isShow}
+            onChange={handleToggle}
+          />
+          <label htmlFor={displayCheckId}>
+            {isShow ? '메시지 감춤' : '메시지 표시'}
+          </label>
+        </Stack>
+        {isShow && <Message message="클린업(정리: cleanup)이 중요하다!" />}
       </Stack>
     </Stack>
   );
@@ -151,12 +153,11 @@ function Message({ message }) {
       console.log({ x: e.clientX, y: e.clientY });
     };
 
-    // 이벤트 핸들러 등록
+    // 이벤트 청취(구독)
     globalThis.addEventListener('mousemove', handleMove);
 
-    // 클린업 함수
-    return () => {
-      // 이벤트 핸들러 해제
+    // 이벤트 청취 해제(구독 취소)
+    return function cleanup() {
       globalThis.removeEventListener('mousemove', handleMove);
     };
   }, []);
