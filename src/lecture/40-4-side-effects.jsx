@@ -18,23 +18,49 @@ function Exercise() {
   // 리액트의 방식
   // ref 콜백 함수
   // 함수의 매개변수로 해당 DOM 객체가 전달된다.
-  const accessDomElement = (domElement) => {
-    // console.log(domElement);
-    domElement.classList.add('super-container');
-    domElement.addEventListener('pointerenter', (e) => {
-      e.target.style.backgroundColor = '#fbe25452';
-    });
-    domElement.addEventListener('pointerleave', (e) => {
-      e.target.style.backgroundColor = '';
-    });
-  };
+  // const accessDomElement = (domElement) => {
+  //   // console.log(domElement);
+  //   domElement.classList.add('super-container');
+  //   domElement.addEventListener('pointerenter', (e) => {
+  //     e.target.style.backgroundColor = '#fbe25452';
+  //   });
+  //   domElement.addEventListener('pointerleave', (e) => {
+  //     e.target.style.backgroundColor = '';
+  //   });
+  // };
+
+  // 리액트의 방식 2
+  // React.useRef 훅을 실행한다.
+  // 수정 가능한(mutable) 객체가 반환. 이 객체는 current 속성을 가짐. { current: mutableValue }
+  const elementRef = useRef(null); // null => JSX <div ref={elementRef}></div> => DOM Element (DOM 커밋 -> 브라우저 페인팅 -> 이후에 접근 가능)
+
+  console.log(elementRef);
+
+  useEffect(() => {
+    let count = 10;
+
+    const { current: element } = elementRef;
+
+    // 명령형 프로그래밍 수행
+
+    const handleClicker = () => {
+      console.log((count += 10));
+    };
+
+    // console.log(elementRef);
+    element.addEventListener('click', handleClicker);
+
+    return () => {
+      element.removeEventListener('click', handleClicker);
+    };
+  }, []);
 
   return (
     <>
-      <div ref={accessDomElement} className="container">
+      <div className="container">
         <h2 className="text-2xl text-indigo-500 mt-7">DOM 요소 접근/조작 1</h2>
       </div>
-      <div ref={accessDomElement} className="container">
+      <div ref={elementRef} className="container">
         <h2 className="text-2xl text-indigo-500 mt-7">DOM 요소 접근/조작 2</h2>
       </div>
       <div className="container">
