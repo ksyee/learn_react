@@ -40,6 +40,8 @@ const INITIAL_ORDER = {
 
 // Design is All. All is Design.
 
+const LIMIT_TOPPINGS = 3;
+
 function Form() {
   // 주문 폼 상태(like a snapshot) 선언
   const [orderState, setOrderState] = useState(INITIAL_ORDER);
@@ -68,15 +70,20 @@ function Form() {
   };
 
   const handleChangePizzaToppings = (e) => {
-    if (orderState.toppings.length > 2) {
-      return alert('토핑은 3개까지만 선택 가능합니다.');
-    }
+    const { value: topping } = e.target;
 
-    const { value: topping, checked: isChecked } = e.target;
+    const toppingsCount = orderState.toppings.length;
+
+    const isToppingChecked = orderState.toppings.includes(topping);
+
+    // 토핑 갯수를 3개로 제한, 조건 처리
+    if (toppingsCount >= LIMIT_TOPPINGS && !isToppingChecked) {
+      return alert('현재(업데이트 전) 토핑 갯수가 3개입니다');
+    }
 
     let nextToppings = [];
 
-    if (isChecked) {
+    if (!isToppingChecked) {
       // 토핑 추가
       nextToppings = [...orderState.toppings, topping];
     } else {
