@@ -1,6 +1,7 @@
 .Stack {
   --display: flex;
   --direction: row;
+  --alignItems: flex-start;
   --wrap: nowrap;
   --gap: 8px;
   --marginBlock: 0;
@@ -8,6 +9,7 @@
 
   display: var(--display);
   flex-flow: var(--direction) var(--wrap);
+  align-items: var(--alignItems);
   gap: var(--gap);
   margin: var(--marginBlock) var(--marginInline);
 }
