@@ -18,29 +18,35 @@ async function fetchProducts(options) {
 }
 
 export default function Exercise() {
-  const [tableContent, setTableContent] = useState([]);
-
-  const tableContentLength = tableContent.length;
+  const [isLoading, setIsLoading] = useState(false);
+  const [tableContents, setTableContents] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true); // 로딩 시작
+
     const controller = new AbortController();
-    fetchProducts({ signal: controller.signal }).then((data) =>
-      setTableContent(data?.items)
-    );
+    fetchProducts({ signal: controller.signal }).then((data) => {
+      setTableContents(data?.items);
+      setIsLoading(false); // 로딩 종료
+    });
 
     return () => {
       controller.abort();
     };
   }, []);
 
-  const tableContentsLegnth = tableContents?.length;
+  const tableContentsLength = tableContents?.length;
+
+  if (isLoading) {
+    return <p>로딩 중...</p>;
+  }
 
   return (
     <div>
       <h2 className="text-2xl text-indigo-500 mt-7">Exercise</h2>
 
       <DataTable contents={tableContents} />
-      <DataTableItemCount count={tableContentsLegnth} />
+      <DataTableItemCount count={tableContentsLength} />
     </div>
   );
 }
@@ -49,6 +55,9 @@ function DataTable({ contents }) {
   return (
     <table className="border-2 border-solid border-zinc-500">
       <caption>표 제목</caption>
+      <col width={160} />
+      <col width={240} />
+      <col width={100} />
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -58,7 +67,7 @@ function DataTable({ contents }) {
       </thead>
       <tbody>
         {contents &&
-          contents.map((content) => {
+          contents?.map((content) => {
             return (
               <tr key={content.id}>
                 <td>{content.id}</td>
