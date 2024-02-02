@@ -17,8 +17,8 @@ async function fetchProducts(options) {
   }
 }
 
-export default function Exercise() {
-  const [isLoading, setIsLoading] = useState(false);
+function Exercise() {
+  const [isLoading, setIsLoading] = useState(true);
   const [tableContents, setTableContents] = useState([]);
 
   useEffect(() => {
@@ -30,6 +30,13 @@ export default function Exercise() {
       setIsLoading(false); // 로딩 종료
     });
 
+    fetchProducts({ signal: controller.signal }).then((data) => {
+      setTableContents(data?.items);
+      setIsLoading(false);
+    });
+
+    // 신호를 통해 중복된 요청일 경우 웹 요청을 취소(abort)
+    // 클린업
     return () => {
       controller.abort();
     };
@@ -39,6 +46,10 @@ export default function Exercise() {
 
   if (isLoading) {
     return <p>로딩 중...</p>;
+  }
+
+  if (isLoading) {
+    return <div role="alert">데이터 로딩 중...</div>;
   }
 
   return (
@@ -53,11 +64,11 @@ export default function Exercise() {
 
 function DataTable({ contents }) {
   return (
-    <table className="border-2 border-solid border-zinc-500">
-      <caption>표 제목</caption>
-      <col width={160} />
-      <col width={240} />
-      <col width={100} />
+    <table className={tableStyle}>
+      <A11yHidden as="caption">표 제목</A11yHidden>
+      <col width="160" />
+      <col width="240" />
+      <col width="100" />
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -66,16 +77,13 @@ function DataTable({ contents }) {
         </tr>
       </thead>
       <tbody>
-        {contents &&
-          contents?.map((content) => {
-            return (
-              <tr key={content.id}>
-                <td>{content.id}</td>
-                <td>{content.name}</td>
-                <td>{content.created}</td>
-              </tr>
-            );
-          })}
+        {contents?.map((content) => (
+          <tr key={content.id}>
+            <td className={borderStyle}>{content.id}</td>
+            <td className={borderStyle}>{content.title}</td>
+            <td className={borderStyle}>{content.color}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
