@@ -36,5 +36,9 @@ export default function useFetch(endpoint) {
       });
   }, [endpoint]);
 
-  return { status, data, error };
+  return {
+    status,
+    data,
+    error,
+  };
 }

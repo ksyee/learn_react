@@ -1,17 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function useMousePosition() {
+function useMousePosition(/* debounceTime = 0 */) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      setPosition({ x: event.clientX, y: event.clientY });
+    const handleMove = (e) => {
+      const nextPosition = {
+        x: e.clientX,
+        y: e.clientY,
+      };
+
+      setPosition(nextPosition);
     };
 
-    globalThis.window.addEventListener('mousemove', handleMouseMove);
+    globalThis.addEventListener('mousemove', handleMove);
 
     return () => {
-      globalThis.window.removeEventListener('mousemove', handleMouseMove);
+      globalThis.removeEventListener('mousemove', handleMove);
     };
   }, []);
 

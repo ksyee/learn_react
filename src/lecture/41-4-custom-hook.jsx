@@ -1,6 +1,5 @@
 import { A11yHidden } from '@/components';
-import { useToggle, useMousePosition } from '@/hooks';
-import useKey from '@/hooks/useKey';
+import { useToggle, useKey, useMousePosition } from '@/hooks';
 import { useState } from 'react';
 
 function Exercise() {
@@ -41,7 +40,7 @@ function ToggleButtonPlayground() {
   // const [isVisible, setToggle] = useToggle();
   const { value: isVisible, on, off } = useToggle();
 
-  useKey('Escape', off);
+  useKey('escape', off);
 
   return (
     <div>
@@ -67,7 +66,7 @@ function MousePositionPlayground() {
 
   return (
     <div>
-      마우스 위치: {x}, {y}
+      x: {x} / y: {y}
     </div>
   );
 }

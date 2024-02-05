@@ -8,8 +8,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
+    'plugin:react-hooks/recommended',
   ],
   overrides: [],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
@@ -20,9 +20,9 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/prop-types': 'off',
-    'react/jsx-uses-react': 'off',
+    'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'react/react-in-jsx-scope': 'off',
-    'no-unused-vars': 'warn',
+    // "react/jsx-uses-react": "off",
+    // "react/react-in-jsx-scope": "off"
   },
 };

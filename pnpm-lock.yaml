@@ -56,7 +56,11 @@ devDependencies:
     specifier: 7.33.2
     version: 7.33.2(eslint@8.56.0)
   eslint-plugin-react-hooks:
+<<<<<<< HEAD
     specifier: ^4.6.0
+=======
+    specifier: 4.6.0
+>>>>>>> 3e07ddd68471c7501890a44659534a3cb68b6e51
     version: 4.6.0(eslint@8.56.0)
   eslint-plugin-storybook:
     specifier: 0.6.15
