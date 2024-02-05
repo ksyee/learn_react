@@ -7,7 +7,13 @@ function useToggle(initialValue = false) {
   const toggleFalsy = () => setToggleValue(false);
   const updateToggleValue = () => setToggleValue((t) => !t);
 
-  return { toggleValue, toggleTruthy, toggleFalsy, updateToggleValue };
+  // return [toggleValue, updateToggleValue];
+  return {
+    value: toggleValue,
+    on: toggleTruthy,
+    off: toggleFalsy,
+    toggle: updateToggleValue,
+  };
 }
 
 export default useToggle;

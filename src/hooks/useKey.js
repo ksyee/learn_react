@@ -9,9 +9,9 @@ function useKey(key, callback, eventType = 'keydown') {
     return () => {
       globalThis.removeEventListener(eventType, handler);
     };
-  }, [key, eventType]);
+  }, [key, callback, eventType]);
 
-  // return undefined
+  // return undefined;
 }
 
 export default useKey;
