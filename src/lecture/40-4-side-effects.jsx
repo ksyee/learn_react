@@ -26,37 +26,6 @@ function Exercise() {
   //   });
   // };
 
-  // 리액트의 방식 2
-  // React.useRef 훅을 실행한다.
-  // 수정 가능한(mutable) 객체가 반환. 이 객체는 current 속성을 가짐. { current: mutableValue }
-  const elementRef = useRef(null); // null => JSX <div ref={elementRef}></div> => DOM Element (DOM 커밋 -> 브라우저 페인팅 -> 이후에 접근 가능)
-
-  console.log(elementRef);
-
-  useEffect(() => {
-    let count = 10;
-
-    const { current: element } = elementRef;
-
-    // 명령형 프로그래밍 수행
-
-    const handleClicker = () => {
-      console.log((count += 10));
-    };
-
-    // console.log(elementRef);
-    element.addEventListener('click', handleClicker);
-
-    return () => {
-      element.removeEventListener('click', handleClicker);
-    };
-  }, []);
-
-  // useRef의 다른 쓰임새
-  // 함수는 매번 실행될 때마다 실행 영역이 초기화되기때문에 어떤 값을 기억할 수 없다.
-  // 그런데 리액트에서는 상태를 사용하면 매번 실행될 때마다 기억이 가능하다.
-  // 하지만 어떤 경우 컴포넌트를 재 실행하지 않고 특정 값을 기억하고 싶다.
-
   // console.log(typeof accessDomElement);
 
   // 리액트의 방식 2
@@ -64,10 +33,10 @@ function Exercise() {
   // React.useRef 훅을 실행한다.
   // 수정 가능한(mutable) 객체가 반환. 이 객체는 current 속성을 가짐. { current: mutableValue }
   // null => JSX <div ref={elementRef}></div> => DOM Element (DOM 커밋 -> 브라우저 페인팅 -> 이후에 접근)
-  const elementRef = useRef(null);
-
   useEffect(() => {
     let count = 10;
+
+    const elementRef = useRef(null); // null => JSX <div ref={elementRef}></div> => DOM Element (DOM 커밋 -> 브라우저 페인팅 -> 이후에 접근 가능)
 
     const { current: element } = elementRef;
 
@@ -104,7 +73,7 @@ function Exercise() {
       <div className="container">
         <h2 className="text-2xl text-indigo-500 mt-7">DOM 요소 접근/조작 2</h2>
       </div>
-      <div ref={elementRef} className="container">
+      <div className="container">
         <h2 className="text-2xl text-indigo-500 mt-7">DOM 요소 접근/조작 3</h2>
       </div>
 
@@ -135,3 +104,5 @@ function Exercise() {
     </>
   );
 }
+
+export default Exercise;
