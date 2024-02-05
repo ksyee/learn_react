@@ -1,6 +1,7 @@
 import { A11yHidden } from '@/components';
 import { useToggle } from '@/hooks';
 import { useState } from 'react';
+import useToggle from '@/hooks/useToggle';
 
 function Exercise() {
   return (
@@ -36,12 +37,23 @@ function ThemeButtonPlayground() {
 }
 
 function ToggleButtonPlayground() {
-  const [toggle, setToggle] = useToggle(['light', 'dark']);
+  const [isVisible, setToggle] = useToggle(['light', 'dark']);
+
   return (
     <div>
       <button type="button" onClick={setToggle}>
-        {toggle ? 'true' : 'false'}
+        {isVisible ? 'true' : 'false'}
       </button>
+      {isVisible && (
+        <>
+          <p className="p-5 border border-stone-500 text-stone-700">
+            현재 박스의 표시 상태는 {isVisible ? '표시' : '감춤'} 입니다
+          </p>
+          <button type="button" onClick={off} aria-label="박스 감춤 버튼">
+            x
+          </button>
+        </>
+      )}
     </div>
   );
 }

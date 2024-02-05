@@ -3,9 +3,11 @@ import { useState } from 'react';
 function useToggle(initialValue = false) {
   const [toggleValue, setToggleValue] = useState(initialValue);
 
+  const toggleTruthy = () => setToggleValue(true);
+  const toggleFalsy = () => setToggleValue(false);
   const updateToggleValue = () => setToggleValue((t) => !t);
 
-  return [toggleValue, updateToggleValue];
+  return { toggleValue, toggleTruthy, toggleFalsy, updateToggleValue };
 }
 
 export default useToggle;
