@@ -1,5 +1,7 @@
 import React from 'react';
 
+// 첫번째 커스텀(사용자 정의) 훅
+
 function Exercise() {
   return (
     <div>
@@ -43,7 +45,7 @@ function StopWatch() {
     setTime(0);
     timerRef.current.start = null;
 
-    timerRef.current = { ...INITIAL_TIMER_INFO };
+    console.log({ stop: timerRef.current });
   };
 
   const displayTimer = time === 0 ? 0 : time.toFixed(3);
