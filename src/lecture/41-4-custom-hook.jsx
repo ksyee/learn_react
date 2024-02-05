@@ -1,46 +1,49 @@
+import { A11yHidden } from '@/components';
+import { useToggle } from '@/hooks';
 import { useState } from 'react';
-import useToggle from '@/hooks/useToggle';
 
 function Exercise() {
-  // const [theme, setTheme] = useState('light');
+  return (
+    <>
+      <ThemeButtonPlayground />
+      <ToggleButtonPlayground />
+    </>
+  );
+}
 
-  // const handleChangeTheme = () => {
-  //   setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  //   console.log('change theme');
-  // };
+function ThemeButtonPlayground() {
+  const [theme, setTheme] = useState('dark');
 
-  // const backgroundColor = theme === 'dark' ? 'bg-stone-950' : 'bg-white';
-  // const textColor = theme === 'dark' ? 'text-white' : 'text-black';
+  const handleChangeTheme = () => {
+    setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
+  };
 
-  const [toDarkTheme, setToDarkTheme] = useToggle();
+  const isDarkTheme = theme === 'dark';
 
-  const backgroundColor = toDarkTheme ? 'bg-stone-950' : 'bg-white';
-  const textColor = toDarkTheme ? 'text-white' : 'text-black';
+  const backgroundColor = isDarkTheme ? 'bg-stone-950' : 'bg-white';
+  const forgroundColor = isDarkTheme ? 'text-white' : 'text-stone-950';
+
+  const classNames = `${backgroundColor} ${forgroundColor} p-6 rounded border border-solid border-stone-400`;
 
   return (
-    <div>
-      <button
-        type="button"
-        className={`${backgroundColor} ${textColor} p-6 rounded border border-zinc-500`}
-        onClick={setToDarkTheme}
-      >
-        {toDarkTheme ? '다크 테마' : '라이트 테마'}
+    <div className={classNames}>
+      <button type="button" onClick={handleChangeTheme}>
+        {theme === 'dark' ? '라이트' : '다크'} 테마{' '}
+        <A11yHidden>전환</A11yHidden>
       </button>
-
-      <ToggleButtonPlayground />
     </div>
   );
 }
 
 function ToggleButtonPlayground() {
-  <button
-    type="button"
-    onClick={() => {
-      setToDarkTheme;
-    }}
-  >
-    {toDarkTheme ? 'true' : 'false'}
-  </button>;
+  const [toggle, setToggle] = useToggle(['light', 'dark']);
+  return (
+    <div>
+      <button type="button" onClick={setToggle}>
+        {toggle ? 'true' : 'false'}
+      </button>
+    </div>
+  );
 }
 
 export default Exercise;

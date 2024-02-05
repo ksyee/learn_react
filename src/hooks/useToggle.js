@@ -1,21 +1,21 @@
 import { useState } from 'react';
 
-export default function useToggle() {
-  const [value, setValue] = useState(false);
+function useToggle(initialValue = false) {
+  const [toggleValue, setToggleValue] = useState(initialValue);
 
-  const toggle = () => {
-    setValue((prevValue) => !prevValue);
-  };
+  const updateToggleValue = () => setToggleValue((t) => !t);
 
-  return [value, toggle];
+  return [toggleValue, updateToggleValue];
 }
+
+export default useToggle;
 
 export function useToggleByValues(initialValue = [true, false]) {
   const [toggleValue, setToggleValue] = useState(initialValue[0]);
 
   const changeToggleValue = () => {
-    setToggleValue((prevValue) =>
-      prevValue === initialValue[0] ? initialValue[1] : initialValue[0]
+    setToggleValue((t) =>
+      t === initialValue[0] ? initialValue[1] : initialValue[0]
     );
   };
 
