@@ -9,15 +9,17 @@ function Exercise() {
   );
 }
 
+const INITIAL_TIMER_INFO = {
+  id: 0,
+  start: null,
+};
+
 function StopWatch() {
   const [time, setTime] = React.useState(0);
 
   // 리액트 렌더링에 영향을 주지 않으면서
   // 어떤 값을 기억하고 싶다. useRef(memoizedValue)
-  const timerRef = React.useRef({
-    id: 0,
-    start: null,
-  });
+  const timerRef = React.useRef({ ...INITIAL_TIMER_INFO });
 
   const handleStart = () => {
     if (!timerRef.current.start) {
@@ -39,6 +41,9 @@ function StopWatch() {
   const handleStop = () => {
     handlePause();
     setTime(0);
+    timerRef.current.start = null;
+
+    timerRef.current = { ...INITIAL_TIMER_INFO };
   };
 
   const displayTimer = time === 0 ? 0 : time.toFixed(3);
