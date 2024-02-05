@@ -44,15 +44,16 @@ function StopWatch() {
 // 아하!!! 커스텀 훅으로 만들자!!!
 
 function Timer() {
-  const [time, begin, , end] = useTime();
-  const displayTime = time === 0 ? 0 : time.toFixed(3);
+  const [time, begin, , end, displayTime] = useTime();
+
+  const printTime = displayTime(time);
 
   return (
     <div>
       <button type="button" onClick={begin}>
         BEGIN
       </button>
-      <h2>타이머: {displayTime}s</h2>
+      <h2>타이머: {printTime}s</h2>
       <button type="button" onClick={end}>
         END
       </button>
