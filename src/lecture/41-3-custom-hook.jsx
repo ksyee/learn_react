@@ -17,7 +17,7 @@ function StopWatch() {
   // const [time, start, pause, stop, display] = useTime();
 
   // 객체 구조 분해 할당 API
-  const { time, getDisplayTime, pause, play } = useTime();
+  const { time, getDisplayTime: display, play, pause, stop } = useTime();
 
   return (
     <div>
@@ -38,17 +38,23 @@ function StopWatch() {
 }
 
 function Timer() {
-  const [time, begin, , , output] = useTime();
+  // 배열 구조 분해 할당 API
+  // const [time, begin, , , output] = useTime();
 
-  const printTime = output(time, 2);
+  // 객체 구조 분해 할당 API
+  const { stop, time, getDisplayTime, play } = useTime();
+
+  const printTime = getDisplayTime(time, 2);
 
   return (
     <div>
-      <button type="button" onClick={begin}>
+      <button type="button" onClick={play}>
         BEGIN
       </button>
       <h2>타이머: {printTime}s</h2>
-      <button type="button">END</button>
+      <button type="button" onClick={stop}>
+        END
+      </button>
     </div>
   );
 }
