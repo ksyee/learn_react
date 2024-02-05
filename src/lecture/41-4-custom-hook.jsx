@@ -1,13 +1,14 @@
 import { A11yHidden } from '@/components';
-import { useToggle } from '@/hooks';
+import { useToggle, useMousePosition } from '@/hooks';
+import useKey from '@/hooks/useKey';
 import { useState } from 'react';
-import useToggle from '@/hooks/useToggle';
 
 function Exercise() {
   return (
     <>
       <ThemeButtonPlayground />
       <ToggleButtonPlayground />
+      <MousePositionPlayground />
     </>
   );
 }
@@ -22,9 +23,9 @@ function ThemeButtonPlayground() {
   const isDarkTheme = theme === 'dark';
 
   const backgroundColor = isDarkTheme ? 'bg-stone-950' : 'bg-white';
-  const forgroundColor = isDarkTheme ? 'text-white' : 'text-stone-950';
+  const foregroundColor = isDarkTheme ? 'text-white' : 'text-stone-950';
 
-  const classNames = `${backgroundColor} ${forgroundColor} p-6 rounded border border-solid border-stone-400`;
+  const classNames = `${backgroundColor} ${foregroundColor} p-6 rounded border border-solid border-stone-400`;
 
   return (
     <div className={classNames}>
@@ -39,6 +40,8 @@ function ThemeButtonPlayground() {
 function ToggleButtonPlayground() {
   // const [isVisible, setToggle] = useToggle();
   const { value: isVisible, on, off } = useToggle();
+
+  useKey('Escape', off);
 
   return (
     <div>
@@ -55,6 +58,16 @@ function ToggleButtonPlayground() {
           </button>
         </>
       )}
+    </div>
+  );
+}
+
+function MousePositionPlayground() {
+  const [x, y] = useMousePosition();
+
+  return (
+    <div>
+      마우스 위치: {x}, {y}
     </div>
   );
 }

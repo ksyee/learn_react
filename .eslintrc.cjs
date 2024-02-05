@@ -8,6 +8,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
   ],
   overrides: [],
@@ -20,6 +21,7 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'react/jsx-uses-react': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
     'react/react-in-jsx-scope': 'off',
     'no-unused-vars': 'warn',
   },

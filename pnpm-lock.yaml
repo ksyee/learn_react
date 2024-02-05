@@ -47,11 +47,7 @@ devDependencies:
     specifier: 4.2.1
     version: 4.2.1(vite@5.0.11)
   autoprefixer:
-<<<<<<< HEAD
     specifier: ^10.4.17
-=======
-    specifier: 10.4.17
->>>>>>> 56a13a4aff06f35e35a23c1cc01ce9eaf19b8f71
     version: 10.4.17(postcss@8.4.33)
   eslint:
     specifier: 8.56.0
@@ -59,31 +55,23 @@ devDependencies:
   eslint-plugin-react:
     specifier: 7.33.2
     version: 7.33.2(eslint@8.56.0)
+  eslint-plugin-react-hooks:
+    specifier: ^4.6.0
+    version: 4.6.0(eslint@8.56.0)
   eslint-plugin-storybook:
     specifier: 0.6.15
     version: 0.6.15(eslint@8.56.0)(typescript@5.3.3)
   postcss:
-<<<<<<< HEAD
     specifier: ^8.4.33
     version: 8.4.33
   postcss-import:
     specifier: ^16.0.0
-=======
-    specifier: 8.4.33
-    version: 8.4.33
-  postcss-import:
-    specifier: 16.0.0
->>>>>>> 56a13a4aff06f35e35a23c1cc01ce9eaf19b8f71
     version: 16.0.0(postcss@8.4.33)
   storybook:
     specifier: 7.6.10
     version: 7.6.10
   tailwindcss:
-<<<<<<< HEAD
     specifier: ^3.4.1
-=======
-    specifier: 3.4.1
->>>>>>> 56a13a4aff06f35e35a23c1cc01ce9eaf19b8f71
     version: 3.4.1
   typescript:
     specifier: 5.3.3
@@ -4275,13 +4263,8 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-<<<<<<< HEAD
       browserslist: 4.22.3
       caniuse-lite: 1.0.30001581
-=======
-      browserslist: 4.22.2
-      caniuse-lite: 1.0.30001579
->>>>>>> 56a13a4aff06f35e35a23c1cc01ce9eaf19b8f71
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -5257,6 +5240,15 @@ packages:
       esutils: 2.0.3
     optionalDependencies:
       source-map: 0.6.1
+    dev: true
+
+  /eslint-plugin-react-hooks@4.6.0(eslint@8.56.0):
+    resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
+    dependencies:
+      eslint: 8.56.0
     dev: true
 
   /eslint-plugin-react@7.33.2(eslint@8.56.0):
