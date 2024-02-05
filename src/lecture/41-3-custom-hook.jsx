@@ -21,7 +21,7 @@ function StopWatch() {
 
   return (
     <div>
-      <h2>Stop Watch: {getDisplayTime(time)}초</h2>
+      <h2>Stop Watch: {display(time)}초</h2>
       <div className="flex gap-2 my-4">
         <button type="button" onClick={play}>
           시작
