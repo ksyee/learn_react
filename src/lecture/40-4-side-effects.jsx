@@ -36,6 +36,7 @@ function Exercise() {
   useEffect(() => {
     let count = 10;
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const elementRef = useRef(null); // null => JSX <div ref={elementRef}></div> => DOM Element (DOM 커밋 -> 브라우저 페인팅 -> 이후에 접근 가능)
 
     const { current: element } = elementRef;
