@@ -1,10 +1,9 @@
 import { Stack } from '@/components';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useInOnScreen } from '../hooks';
 
 function Exercise() {
-  const [isOnScreen, setIsOnScreen] = useState(false);
-
-  const elementRef = useRef(null);
+  const [isObScreen, elementRef] = useInOnScreen();
 
   // DOM 커밋 이후 (브라우저 페인팅 이전) 실행
   useLayoutEffect(() => {
