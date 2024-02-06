@@ -1,9 +1,9 @@
 import { useStorage } from '@/hooks';
 
-const KEY = 'say-today';
+const KEY = 'to-dayoung';
 
 function Exercise() {
-  const [message, setMessage] = useStorage(KEY, '오늘 기억하고 싶은 말');
+  const [message, setMessage] = useStorage(KEY, '다영님 졸지 마세요!!!');
 
   const handleUpdate = (e) => {
     setMessage(e.target.value);
