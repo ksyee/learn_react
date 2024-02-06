@@ -13,19 +13,24 @@ function Exercise() {
   const cardRef = useRef(null);
 
   useEffect(() => {
-    console.log(cardRef.current /* Tilt { element } */);
+    console.log(cardRef.current);
   }, []);
 
   return (
     <>
-      <$TiltBox ref={cardRef} options={BOX_OPTIONS}>
+      <TiltBox ref={cardRef} options={BOX_OPTIONS}>
         ref 전달하기
-      </$TiltBox>
+      </TiltBox>
     </>
   );
 }
 
-const $TiltBox = forwardRef(function TiltBox({ children, ...restProps }, ref) {
+const TiltBox = forwardRef(function TiltBox(
+  /* props */
+  { children, ...restProps },
+  /* ref */
+  ref
+) {
   return (
     <div
       ref={ref}
