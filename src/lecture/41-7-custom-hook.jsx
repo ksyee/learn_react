@@ -1,16 +1,15 @@
 import { Stack } from '@/components';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 function Exercise() {
   const [isOnScreen, setIsOnScreen] = useState(false);
 
   const elementRef = useRef(null);
 
-  // 브라우저 페인팅 이후 실행
-  // useEffect 훅
-
   // DOM 커밋 이후 (브라우저 페인팅 이전) 실행
   useLayoutEffect(() => {
+    console.log('useLayoutEffect');
+
     // 관측할 대상
     // target elment : elementRef.current
     const target = elementRef.current;
@@ -40,8 +39,19 @@ function Exercise() {
 
     // 클린업
     return () => {
+      console.log('cleanup useLayoutEffect');
       // 관측 행위 중단
       observer.disconnect();
+    };
+  }, []);
+
+  // 브라우저 페인팅 이후 실행
+  // useEffect 훅
+  useEffect(() => {
+    console.log('useEffect');
+
+    return () => {
+      console.log('cleanup useEffect');
     };
   }, []);
 
