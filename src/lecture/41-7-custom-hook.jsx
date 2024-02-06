@@ -37,7 +37,12 @@ function Exercise() {
 }
 
 function Box({ color, children }) {
+  const [inOnScreen, elementRef] = useInOnScreen();
+
+  console.log(`${color} 박스 상태: ${inOnScreen ? 'in' : 'out'}`.toUpperCase());
+
   let bgColor = '';
+
   switch (color) {
     case 'orange':
       bgColor = 'bg-orange-800';
@@ -51,8 +56,10 @@ function Box({ color, children }) {
     default:
       bgColor = 'bg-black';
   }
+
   return (
     <article
+      ref={elementRef}
       className={`h-[90vh] w-[100%] p-5 ${bgColor} text-white rounded-lg`}
     >
       <h3 className="uppercase text-2xl">{children}</h3>
