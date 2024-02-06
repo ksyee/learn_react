@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-function useTooltip() {
-  const [isShow, setIsShow] = useState(false);
+function useTooltip(initialValue = false) {
+  const [isShow, setIsShow] = useState(initialValue);
+
   const show = () => setIsShow(true);
   const hide = () => setIsShow(false);
-  const toggle = () => setIsShow(!isShow);
+  const toggle = () => setIsShow((s) => !s);
 
   return {
     isShow,
