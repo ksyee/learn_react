@@ -5,6 +5,7 @@ const BOX_OPTIONS = {
   reverse: true,
   glare: true,
   'max-glare': 0.7,
+  scale: 0.94,
 };
 
 function Exercise() {

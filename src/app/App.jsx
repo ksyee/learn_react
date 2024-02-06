@@ -1,5 +1,5 @@
 import { app as appClassName } from './App.module.css';
-import Exercise from '@/lecture/42-2-only-react-lib';
+import Exercise from '@/lecture/43-1-forward-ref';
 
 function App() {
   return (
