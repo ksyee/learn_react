@@ -1,6 +1,6 @@
+import { useTilt } from '@/hooks';
 import { range } from '@/utils';
-import { useEffect, useRef } from 'react';
-import { TiltBox } from './42-1-external-lib-dom-control';
+import { useEffect, useRef, forwardRef } from 'react';
 
 const BOX_OPTIONS = {
   reverse: true,
@@ -18,15 +18,23 @@ function Exercise() {
 
   return (
     <>
-      <div className="flex gap-2 mb-10">
-        {range(10, 100, 10).map((n) => (
-          <TiltBox key={n} options={BOX_OPTIONS}>
-            {n}
-          </TiltBox>
-        ))}
-      </div>
+      <$TiltBox ref={cardRef} options={BOX_OPTIONS}>
+        ref 전달하기
+      </$TiltBox>
     </>
   );
 }
+
+const $TiltBox = forwardRef(function TiltBox({ children, ...restProps }, ref) {
+  return (
+    <div
+      ref={ref}
+      className="flex justify-center items-center w-[200px] h-[200px] bg-gray-900 text-gray-50 rounded-lg"
+      {...restProps}
+    >
+      {children}
+    </div>
+  );
+});
 
 export default Exercise;
