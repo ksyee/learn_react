@@ -1,27 +1,27 @@
-import { useTilt } from '../hooks';
+import { useTilt } from '@/hooks';
 
 const BOX_COUNT = 9;
 const BOX_OPTIONS = {
   reverse: true,
   glare: true,
-  'max-glare': 0.5,
+  'max-glare': 0.7,
 };
 
 function Exercise() {
   return (
-    <div>
+    <div className="flex gap-2">
       {Array(BOX_COUNT)
         .fill(null)
-        .map((_, index) => {
-          <TiltBox key={index} options={BOX_OPTIONS}>
-            {index + 1}
-          </TiltBox>;
-        })}
+        .map((_, i) => (
+          <TiltBox key={i} options={BOX_OPTIONS}>
+            {i + 1}
+          </TiltBox>
+        ))}
     </div>
   );
 }
 
-function TiltBox({ children, onTilt, options, ...restProps }) {
+function TiltBox({ children, onTilt = null, options = {}, ...restProps }) {
   const boxRef = useTilt({
     onTilt,
     options,

@@ -25,7 +25,7 @@ function useTilt({ onTilt = null, options = {} } = {}) {
     };
   }, [options, onTilt]);
 
-  return [tiltBoxRef];
+  return tiltBoxRef;
 }
 
 export default useTilt;
