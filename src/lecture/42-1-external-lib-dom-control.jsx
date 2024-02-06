@@ -12,23 +12,27 @@ const BOX_OPTIONS = {
 function Exercise() {
   return (
     <>
+      <div className="flex gap-2 mb-10">
+        {range(40, 90, 7).map((n) => (
+          <Tilt
+            key={n}
+            className="bg-black"
+            style={{ height: 250, width: 250 }}
+            options={BOX_OPTIONS}
+            onMouseEnter={(e) => {
+              console.log(e);
+            }}
+          >
+            <span>👽 alien</span>
+          </Tilt>
+        ))}
+      </div>
       <div className="flex gap-2">
-        {range(1, BOX_COUNT, 2).map((n, i) => (
-          <TiltBox key={i} options={BOX_OPTIONS}>
+        {range(10, 160, 2).map((n) => (
+          <TiltBox key={n} options={BOX_OPTIONS}>
             {n}
           </TiltBox>
         ))}
-      </div>
-      <div>
-        {range(40, 90, 7).map((n) => {
-          <Tilt
-            key={n}
-            className="bg-black h-250pxr w-250pxr"
-            options={BOX_OPTIONS}
-          >
-            <span>🏠</span>
-          </Tilt>;
-        })}
       </div>
     </>
   );
