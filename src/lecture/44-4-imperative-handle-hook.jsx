@@ -1,20 +1,25 @@
 import { EuidInput } from '@/components';
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 function Exercise() {
-  const inputHandleRef = useRef(null);
+  const inputHandlesRef = useRef({});
 
   useEffect(() => {
-    console.log(inputHandleRef.current);
-  });
+    const { styling } = inputHandlesRef.current;
+
+    styling(`
+      outline: 10px solid blue;
+      padding: 8px;
+    `);
+  }, []);
 
   return (
     <form className="flex gap-5 flex-col my-10">
       <EuidInput
-        ref={inputHandleRef}
+        ref={inputHandlesRef}
         label="email"
         hiddenLabel
-        placeholder="user@company.ui"
+        placeholder="user@company.io"
       />
     </form>
   );
