@@ -1,6 +1,18 @@
-import { useId } from 'react';
 import { A11yHidden } from '@/components';
-import PropTypes from 'prop-types';
+import {
+  objectOf,
+  any,
+  exact,
+  oneOf,
+  number,
+  oneOfType,
+  string,
+  elementType,
+  func,
+  object,
+  bool,
+} from 'prop-types';
+import { useId } from 'react';
 
 function AppInput(
   /* props */
@@ -58,21 +70,23 @@ function AppInput(
 }
 
 AppInput.propTypes = {
-  forwardRef: PropTypes.oneOfType([
-    PropTypes.oneOf([null]),
-    PropTypes.exact({ current: PropTypes.instanceOf(Element) }),
+  forwardRef: oneOfType([oneOf([null]), exact({ current: any })]),
+  as: oneOfType([
+    string,
+    // oneOf(['a', 'p', 'h1', 'h2', 'div', 'span', 'table']),
+    elementType,
   ]),
-  as: PropTypes.oneOfType([PropTypes.string, PropTypes.elementType]),
-  name: PropTypes.string,
-  type: PropTypes.string,
-  label: PropTypes.string,
-  placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  gap: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  style: PropTypes.object,
-  hiddenLabel: PropTypes.bool,
-  inputProps: PropTypes.object,
+  name: string.isRequired,
+  type: oneOf(['text', 'range', 'search', 'email', 'password', 'radio']),
+  lable: string.isRequired,
+  placeholder: string.isRequired,
+  value: string,
+  onChange: func,
+  gap: oneOfType([number, string]),
+  style: object,
+  hiddenLabel: bool,
+  inputProps: object,
+  restProps: objectOf(any),
 };
 
 export default AppInput;

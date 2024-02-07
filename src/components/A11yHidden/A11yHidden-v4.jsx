@@ -14,7 +14,7 @@ function A11yHidden({ as: ComponentName = 'span', ...restProps }) {
 }
 
 A11yHidden.propTypes = {
-  as: PropTypes.string,
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.elementType]),
 };
 
 export default A11yHidden;
