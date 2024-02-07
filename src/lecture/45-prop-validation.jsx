@@ -1,5 +1,4 @@
-import React from 'react';
-import { Avatar } from '@/components';
+import { Avatar, Graph } from '@/components';
 
 function Exercise() {
   return (

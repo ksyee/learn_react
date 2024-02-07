@@ -1,4 +1,3 @@
-import { typeIs, CustomPropTypes } from '@/utils';
 import classes from './Avatar.module.css';
 import { string, bool } from 'prop-types';
 
