@@ -6,7 +6,6 @@ export { default as CatCardList } from './CatCardList/CatCardList';
 export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as EuidInput } from './EuidInput/EuidInput';
 export { default as FormInput } from './FormInput/FormInput';
-export { default as EuidInput } from './EuidInput/EuidInput';
 export { default as AppInput } from './AppInput/AppInput';
 export { default as CountUp } from './CountUp/CountUp';
 export { default as Avatar } from './Avatar/Avatar';
