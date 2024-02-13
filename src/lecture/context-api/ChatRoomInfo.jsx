@@ -1,3 +1,5 @@
+import { oneOf } from 'prop-types';
+
 function ChatRoomInfo() {
   return (
     <div>
@@ -5,5 +7,9 @@ function ChatRoomInfo() {
     </div>
   );
 }
+
+ChatRoomInfo.propTypes = {
+  role: oneOf(['GUEST', 'MEMBER', 'ADMINISTRATOR']),
+};
 
 export default ChatRoomInfo;

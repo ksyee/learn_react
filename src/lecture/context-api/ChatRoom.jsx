@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { oneOf, shape, string } from 'prop-types';
+import { oneOf, string, exact } from 'prop-types';
 import ChatRoomInfo from './ChatRoomInfo';
 import MessageInput from './MessageInput';
 import SpeechBubble from './SpeechBubble';
-import { exact, string, oneOf } from 'prop-types';
 import { memo } from 'react';
 
-function ChatRoom({ users }) {
+function ChatRoom({ users, message = [] }) {
   // 변경된 users 상태를 읽어야 한다.
   return (
     <div>
