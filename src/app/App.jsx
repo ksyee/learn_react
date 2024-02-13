@@ -1,10 +1,14 @@
 import { app as appClasName } from './App.module.css';
-import Exercise from '@/lecture/47-2-context-api';
+import Exercise from '@/lecture/48-1-client-side-routing';
+import { RouterProvider } from 'react-router-dom';
+import router from '@/routes';
 
 function App() {
   return (
     <div className={appClasName}>
-      <Exercise />
+      <RouterProvider>
+        <Exercise />
+      </RouterProvider>
     </div>
   );
 }
