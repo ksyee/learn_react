@@ -11,7 +11,6 @@ import AdminLayout from '@/pages/AdminLayout';
 // Pages
 import HomePage from '@/pages/Home';
 import IntroPage from '@/pages/Intro';
-import RootLayout from '@/layouts/RootLayout';
 
 // 루트 구성(routes configuration)
 const routes = [
