@@ -1,5 +1,11 @@
 import { node } from 'prop-types';
-import { createContext, useCallback, useMemo, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useMemo,
+  useState,
+  useContext,
+} from 'react';
 
 // [학습 순서]
 // 3. 컨텍스트 API 활용 (글로벌 또는 특정 컨텍스트 상태 관리) ✅
@@ -49,4 +55,13 @@ ChatProvider.propTypes = {
 };
 
 // 3-5. 컨텍스트 값을 공급하는 커스텀 훅
+export const useChat = () => {
+  const value = useContext(ChatContext);
+
+  if (!value) {
+    throw new Error('useChat 혹은 ');
+  }
+
+  return value;
+};
 // 3-6. 효율적인 리-렌더링 관리 (프로파일링 & 메모)
