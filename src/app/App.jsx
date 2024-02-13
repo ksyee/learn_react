@@ -1,5 +1,6 @@
 import Exercise from '@/lecture/48-1-client-side-routing';
 import { app as appClasName } from './App.module.css';
+import { RouterProvider } from 'react-router-dom';
 
 function App() {
   return (
