@@ -2,16 +2,16 @@ import { node } from 'prop-types';
 import {
   createContext,
   useCallback,
+  useContext,
   useMemo,
   useState,
-  useContext,
 } from 'react';
 
 // [학습 순서]
 // 3. 컨텍스트 API 활용 (글로벌 또는 특정 컨텍스트 상태 관리) ✅
 // ...
 // 3-3-2. 컨텍스트 분리 (가능하다면 처음에 설계 잘해서 한 번에 분리)
-export const ChatContext = createContext();
+const ChatContext = createContext();
 
 // 3-4. 컨텍스트 프로바이더 래퍼 컴포넌트 (커스텀 프로바이더 컴포넌트)
 export const ChatProvider = ({ children }) => {
@@ -59,7 +59,7 @@ export const useChat = () => {
   const value = useContext(ChatContext);
 
   if (!value) {
-    throw new Error('useChat 혹은 ');
+    throw new Error('useChat 훅은 ChatProvider 내부에서만 사용 가능합니다.');
   }
 
   return value;
