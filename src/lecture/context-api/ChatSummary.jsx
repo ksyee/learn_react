@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
 function ChatSummary() {
-  const [users, setUsers] = useState(null);
-
   return (
     <div>
       <h3>ChatSummary</h3>
