@@ -10,6 +10,7 @@ export default function Stack({
   mx: marginInline,
   ...restProps
 }) {
+  
   const 컴포넌트_클래스이름 = `${classes.Stack} ${customClassNames}`.trim();
 
   const 컴폰넌트_제작자의_스타일 = {};
@@ -26,6 +27,7 @@ export default function Stack({
     컴폰넌트_제작자의_스타일['--marginBlock'] = `${marginBlock}px`;
   }
 
+  
   if (marginInline || marginInline === 0) {
     컴폰넌트_제작자의_스타일['--marginInline'] = `${marginInline}px`;
   }

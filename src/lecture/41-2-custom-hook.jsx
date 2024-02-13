@@ -1,5 +1,7 @@
 import React from 'react';
 
+// 첫번째 커스텀(사용자 정의) 훅
+
 function Exercise() {
   return (
     <div>
@@ -9,17 +11,15 @@ function Exercise() {
   );
 }
 
-const INITIAL_TIMER_INFO = {
-  id: 0,
-  start: null,
-};
-
 function StopWatch() {
   const [time, setTime] = React.useState(0);
 
   // 리액트 렌더링에 영향을 주지 않으면서
   // 어떤 값을 기억하고 싶다. useRef(memoizedValue)
-  const timerRef = React.useRef({ ...INITIAL_TIMER_INFO });
+  const timerRef = React.useRef({
+    id: 0,
+    start: null,
+  });
 
   const handleStart = () => {
     if (!timerRef.current.start) {

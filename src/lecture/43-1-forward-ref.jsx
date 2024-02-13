@@ -1,4 +1,3 @@
-import { useTilt } from '@/hooks';
 import { range } from '@/utils';
 import { useEffect, useRef, forwardRef } from 'react';
 

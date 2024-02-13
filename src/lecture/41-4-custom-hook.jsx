@@ -22,9 +22,9 @@ function ThemeButtonPlayground() {
   const isDarkTheme = theme === 'dark';
 
   const backgroundColor = isDarkTheme ? 'bg-stone-950' : 'bg-white';
-  const foregroundColor = isDarkTheme ? 'text-white' : 'text-stone-950';
+  const forgroundColor = isDarkTheme ? 'text-white' : 'text-stone-950';
 
-  const classNames = `${backgroundColor} ${foregroundColor} p-6 rounded border border-solid border-stone-400`;
+  const classNames = `${backgroundColor} ${forgroundColor} p-6 rounded border border-solid border-stone-400`;
 
   return (
     <div className={classNames}>

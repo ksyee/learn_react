@@ -1,5 +1,7 @@
 import CatCardItem from './CatCardItem';
 import classes from './CatCardList.module.css';
+
+// 데이터 가져오기
 import catsData from '../../data/cats.json';
 import { CatListType } from './type';
 

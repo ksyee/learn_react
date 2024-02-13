@@ -1,25 +1,28 @@
-// // 데이터 가져오기
-// import catsData from '../../../data/cats.json';
-// import { CatListType } from './type';
+import CatCardItem from './CatCardItem';
+import classes from './CatCardList.module.css';
 
-// function CatCardList({ catList }) {
-//   // 데이터 순환하여 리스트 렌더링
-//   const renderCatsList =
-//     catList ??
-//     catsData.map((cat) => {
-//       // console.log(cat);
-//       return <CatCardItem key={cat.id} cat={cat} />;
-//     });
+// 데이터 가져오기
+import catsData from '../../data/cats.json';
+import { CatListType } from './type';
 
-//   return (
-//     <section className={classes.component} aria-label="사랑스런 고양이 가족">
-//       {renderCatsList}
-//     </section>
-//   );
-// }
+function CatCardList({ catList }) {
+  // 데이터 순환하여 리스트 렌더링
+  const renderCatsList =
+    catList ??
+    catsData.map((cat) => {
+      // console.log(cat);
+      return <CatCardItem key={cat.id} cat={cat} />;
+    });
 
-// CatCardList.propTypes = {
-//   catList: CatListType,
-// };
+  return (
+    <section className={classes.component} aria-label="사랑스런 고양이 가족">
+      {renderCatsList}
+    </section>
+  );
+}
 
-// export default CatCardList;
+CatCardList.propTypes = {
+  catList: CatListType,
+};
+
+export default CatCardList;

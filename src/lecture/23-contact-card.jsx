@@ -1,13 +1,14 @@
 import './23-contact-card.css';
 
 const IMAGE_URL =
-  'https://raw.githubusercontent.com/yamoo9/assets/master/images/faces/';
+  'https://raw.githubusercontent.com/yamoo9/assets/master/images/faces';
 
 export function ContactCard({
   // key,
   name,
   job,
   email,
+  gender,
   face,
   ext = 'jpg',
 }) {
@@ -16,10 +17,10 @@ export function ContactCard({
   return (
     <li className="ContactCardItem">
       <img
-        src={`${IMAGE_URL}/${face}.${ext}`}
+        src={`${IMAGE_URL}/${gender}/${`0${face}`}.${ext}`}
         height={90}
         width={90}
-        alt="profile"
+        alt=""
       />
       <strong>{name}</strong>
       <dl>
@@ -42,19 +43,22 @@ function Exercise() {
   return (
     <ContactCardList>
       <ContactCard
-        face="woman/02"
-        name="박연주"
+        gender="woman"
+        face={2}
+        name="하연주"
         job="웹 디자이너"
         email="hayounju@dev.io"
       />
       <ContactCard
-        face="man/03"
+        gender="man"
+        face={2}
         name="박선호"
         job="웹 개발자"
         email="parksh@dev.io"
       />
       <ContactCard
-        face="woman/04"
+        gender="woman"
+        face={5}
         name="최하영"
         job="웹 기획자"
         email="choi-ha@dev.io"

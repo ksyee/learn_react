@@ -59,7 +59,7 @@ function Counter({ min = 0, count = 0, step = 1, max = 50 }) {
   }, [step]);
 
   // useMemo 예시 (JS 모든 값(함수 포함) 기억)
-  // const memoYourName = useMemo(() => /* 값 기억 */ 'yamoo' + 9, []);
+  // const memoYourName = useMemo(() => /* 값 기억 */'yamoo' + 9, []);
   // const handleCountDown2 = useMemo(
   //   () => () => {
   //     setValue((v) => v - step);

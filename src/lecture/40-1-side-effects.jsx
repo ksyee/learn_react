@@ -9,7 +9,7 @@ setTimeout(() => {
 
 const API_ENDPOINT = `${
   import.meta.env.VITE_PB_API
-}/api/collections/original_contents/records`;
+}/api/collections/products/records?page=2&perPage=2`;
 
 function Exercise() {
   const [products, setProducts] = useState(null); // null | Array<{id, name, ...}>

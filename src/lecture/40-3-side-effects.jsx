@@ -1,35 +1,30 @@
 import { A11yHidden, Stack } from '@/components';
 import { useEffect, useState } from 'react';
 
-const API = `${
-  import.meta.env.VITE_PB_API
-}/api/collections/original_contents/records`;
+const API = import.meta.env.VITE_PB_API;
 
 async function fetchProducts(options) {
   try {
-    const response = await fetch(`${API}`, options);
+    const response = await fetch(
+      `${API}/api/collections/products/records?page=1&perPage=5`,
+      options
+    );
     const data = await response.json();
-
     return data;
   } catch (error) {
-    if (error instanceof DOMException) {
-      console.error('요청이 취소되었습니다.');
+    if (!(error instanceof DOMException)) {
+      throw new Error(error);
     }
   }
 }
 
-export default function Exercise() {
+function Exercise() {
   const [isLoading, setIsLoading] = useState(true);
   const [tableContents, setTableContents] = useState([]);
 
+  // 1번만 요청
   useEffect(() => {
-    setIsLoading(true); // 로딩 시작
-
     const controller = new AbortController();
-    fetchProducts({ signal: controller.signal }).then((data) => {
-      setTableContents(data?.items);
-      setIsLoading(false); // 로딩 종료
-    });
 
     fetchProducts({ signal: controller.signal }).then((data) => {
       setTableContents(data?.items);
@@ -39,15 +34,12 @@ export default function Exercise() {
     // 신호를 통해 중복된 요청일 경우 웹 요청을 취소(abort)
     // 클린업
     return () => {
+      // 네트워크 요청 취소
       controller.abort();
     };
   }, []);
 
-  const tableContentsLength = tableContents?.length;
-
-  if (isLoading) {
-    return <p>로딩 중...</p>;
-  }
+  const tableContentsLegnth = tableContents?.length;
 
   if (isLoading) {
     return <div role="alert">데이터 로딩 중...</div>;
@@ -58,7 +50,7 @@ export default function Exercise() {
       <h2 className="text-2xl text-indigo-500 mt-7">Exercise</h2>
       <CountUpDown />
       <DataTable contents={tableContents} />
-      <DataTableItemCount count={tableContentsLength} />
+      <DataTableItemCount count={tableContentsLegnth} />
     </div>
   );
 }
@@ -113,8 +105,8 @@ function CountUpDown() {
 }
 
 function DataTable({ contents }) {
-  const tableStyle = 'w-full border-2 border-solid border-sky-600';
-  const borderStyle = 'border border-solid border-sky-600';
+  const tableStyle = 'mt-2 border-2 border-solid border-indigo-600';
+  const borderStyle = 'p-2 border border-solid border-indigo-300';
 
   return (
     <table className={tableStyle}>
@@ -126,17 +118,23 @@ function DataTable({ contents }) {
       </colgroup>
       <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">NAME</th>
-          <th scope="col">CREATE</th>
+          <th scope="col" className={borderStyle}>
+            ID
+          </th>
+          <th scope="col" className={borderStyle}>
+            TITLE
+          </th>
+          <th scope="col" className={borderStyle}>
+            COLOR
+          </th>
         </tr>
       </thead>
       <tbody>
         {contents?.map((content) => (
           <tr key={content.id}>
             <td className={borderStyle}>{content.id}</td>
-            <td className={borderStyle}>{content.name}</td>
-            <td className={borderStyle}>{content.created}</td>
+            <td className={borderStyle}>{content.title}</td>
+            <td className={borderStyle}>{content.color}</td>
           </tr>
         ))}
       </tbody>
@@ -151,3 +149,5 @@ function DataTableItemCount({ count }) {
     </output>
   );
 }
+
+export default Exercise;

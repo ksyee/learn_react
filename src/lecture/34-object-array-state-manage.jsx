@@ -12,28 +12,13 @@ const createCatsList = () =>
 // dummy data
 const newCat = createCatsList()[1]; // [cat, cat, cat]
 
-// const createCatsList = () => () => {
-//   catsData.map((cat) => {
-//     const [year] = cat.birth.split('-');
-//     const age = new Date().getFullYear() - year;
-//     return { ...cat, age };
-//   });
-// };
-
 function CatsList() {
-  const [cats, setCats] = useState(createCatsList);
-
-  const handleDecreaseAge = (updateCatId) => () => {
-    setCats((cats) => {
-      cats.map((cat) => {
-        if (cat.id === updateCatId) {
-          return { ...cat, age: cat.age-- };
-        } else {
-          return cat;
-        }
-      });
-    });
-  };
+  const [
+    /* 상태 = 현재 컴포넌트에서 데이터 스냅샷 (수정 불가능) */
+    cats,
+    /* 상태 업데이트 함수 실행 (트리거 -> 렌더 -> 커밋) */
+    setCats,
+  ] = useState(createCatsList);
 
   const handleDeleteCat = (deleteCatId) => {
     setCats(cats.filter((cat) => cat.id !== deleteCatId));
@@ -49,6 +34,18 @@ function CatsList() {
         cat.id === updateCatId ? { ...cat, age: cat.age + 1 } : cat
       )
     );
+
+  const handleDecreaseAge = (updateCatId) => {
+    const nextCats = cats.map((cat) => {
+      if (cat.id === updateCatId) {
+        return { ...cat, age: cat.age - 1 };
+      } else {
+        return cat;
+      }
+    });
+
+    setCats(nextCats);
+  };
 
   return (
     <>
@@ -80,14 +77,14 @@ function CatsList() {
               <button
                 type="button"
                 aria-label="고양이 나이 1 증가"
-                onClick={handleIncreaseAge(cat.id)}
+                onClick={() => handleIncreaseAge(cat.id)}
               >
                 +
               </button>
               <button
                 type="button"
                 aria-label="고양이 나이 1 감소"
-                onClick={handleDecreaseAge(cat.id)}
+                onClick={() => handleDecreaseAge(cat.id)}
               >
                 -
               </button>

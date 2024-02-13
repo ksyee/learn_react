@@ -70,7 +70,7 @@ function Form() {
   };
 
   const handleChangePizzaToppings = (e) => {
-    const { value: topping /* checked: isChecked */ } = e.target;
+    const { value: topping, /* checked: isChecked */ } = e.target;
 
     // 리액트 입장에서 현재 토핑 집합의 총 갯수
     const toppingsCount = orderState.toppings.length;

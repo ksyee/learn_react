@@ -90,7 +90,7 @@ function Exercise() {
   const [isShow, setIsShow] = useState(false);
 
   const handleToggle = () => {
-    setIsShow((prev) => !prev);
+    setIsShow((s) => !s);
   };
 
   return (
@@ -116,9 +116,11 @@ function Exercise() {
           사용되어야 한다.
         </li>
       </ul>
+
       <Button count={productsCount} onClick={handleEffectNetworkReqRes}>
         상품 요청
       </Button>
+
       {products && (
         <Stack as="ul" vertical gap={12}>
           {products.map((product) => (

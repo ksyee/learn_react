@@ -7,8 +7,8 @@
 // 아하!!! 커스텀 훅으로 만들자!!!
 
 export { default as useKey } from './useKey';
-export { default as useTilt } from './useTilt';
 export { default as useTime } from './useTime';
+export { default as useTilt } from './useTilt';
 export { default as useFetch } from './useFetch';
 export { default as useToggle } from './useToggle';
 export { default as useTooltip } from './useTooltip';

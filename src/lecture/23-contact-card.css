@@ -17,7 +17,7 @@ body {
 
   background-color: var(--bg);
   color: var(--fg);
-  font: 1rem/1.5 'SUIT Variable', sans-serif;
+  font: 1rem/1.5 "SUIT Variable", sans-serif;
 }
 
 .ContactCardList {
@@ -36,7 +36,7 @@ body {
     align-items: center;
     gap: 12px;
     background-color: var(--gray-700);
-    border: 0.5px solid var(--gray-500);
+    border: .5px solid var(--gray-500);
     border-radius: 8px;
     padding: 20px;
 
@@ -58,7 +58,7 @@ body {
       gap: 4px;
       margin: 0;
       padding-top: 12px;
-      border-top: 0.1px solid var(--gray-600);
+      border-top: .1px solid var(--gray-600);
       font-size: 12px;
     }
 
@@ -81,4 +81,5 @@ body {
       }
     }
   }
+
 }

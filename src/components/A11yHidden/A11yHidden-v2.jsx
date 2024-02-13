@@ -7,9 +7,9 @@ import styles from './A11yHidden.module.css'; // local CSS
 // - [x] CSS Modules (파일 이름에 접미사 .module / import 모듈 from './*.module.css')
 // - [ ] JavaScript 객체 합성의 함정에 유의
 
-function A11yHidden({ as: As = 'span', ...restProps }) {
+function A11yHidden({ as: ComponentName = 'span', ...restProps }) {
   return (
-    <As
+    <ComponentName
       className={styles.group}
       style={{
         fontSize: 100,

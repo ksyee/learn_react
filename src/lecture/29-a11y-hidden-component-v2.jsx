@@ -7,6 +7,7 @@ const bannerInfo =
 function Exercise() {
   return (
     <figure>
+      {/* <ExampleImg /> */}
       <div
         role="img"
         style={{
@@ -18,15 +19,19 @@ function Exercise() {
           height: 1080 / 4,
         }}
       >
-        <A11yHidden>{bannerInfo}</A11yHidden>
-        <A11yHidden as="figcaption">{bannerInfo}</A11yHidden>
+        {/* <span className="sr-only">{bannerInfo}</span> */}
+        <A11yHidden>{bannerInfo}</A11yHidden> {/* <span>...</span> */}
+        <A11yHidden as="figcaption">{bannerInfo}</A11yHidden> {/* <p>...</p> */}
       </div>
     </figure>
   );
 }
 
-// function ExampleImg() {
-//   return <img src={bannerImage} alt={bannerInfo} height={800} />;
-// }
+{
+  /* <img /> 경우 alt 속성에 접근 가능한 정보를 제공 */
+}
+function ExampleImg() {
+  return <img src={bannerImage} alt={bannerInfo} height={800} />;
+}
 
 export default Exercise;

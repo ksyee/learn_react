@@ -8,7 +8,7 @@ import './WeatherIcon.css';
 function WeatherIcon(props) {
   const label = '';
   const type = props.type.replace(/\s+/g, '-');
-  const imageSource = `/images/Weather/${type}.svg`;
+  const imageSource = `/images/weather-${type}.svg`;
 
   return <img src={imageSource} alt={label} title={label} />;
 }

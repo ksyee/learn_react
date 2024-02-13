@@ -15,16 +15,16 @@ function Exercise() {
   // 리액트의 방식 1
   // ref 콜백 함수
   // 함수의 매개변수로 해당 DOM 객체가 전달된다.
-  // const accessDomElement = (domElement) => {
-  //   // console.log(domElement);
-  //   domElement.classList.add('super-container');
-  //   domElement.addEventListener('pointerenter', (e) => {
-  //     e.target.style.backgroundColor = '#fbe25452';
-  //   });
-  //   domElement.addEventListener('pointerleave', (e) => {
-  //     e.target.style.backgroundColor = '';
-  //   });
-  // };
+  const accessDomElement = (domElement) => {
+    // console.log(domElement);
+    domElement.classList.add('super-container');
+    domElement.addEventListener('pointerenter', (e) => {
+      e.target.style.backgroundColor = '#fbe25452';
+    });
+    domElement.addEventListener('pointerleave', (e) => {
+      e.target.style.backgroundColor = '';
+    });
+  };
 
   // console.log(typeof accessDomElement);
 
@@ -33,11 +33,10 @@ function Exercise() {
   // React.useRef 훅을 실행한다.
   // 수정 가능한(mutable) 객체가 반환. 이 객체는 current 속성을 가짐. { current: mutableValue }
   // null => JSX <div ref={elementRef}></div> => DOM Element (DOM 커밋 -> 브라우저 페인팅 -> 이후에 접근)
+  const elementRef = useRef(null);
+
   useEffect(() => {
     let count = 10;
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const elementRef = useRef(null); // null => JSX <div ref={elementRef}></div> => DOM Element (DOM 커밋 -> 브라우저 페인팅 -> 이후에 접근 가능)
 
     const { current: element } = elementRef;
 
@@ -74,7 +73,7 @@ function Exercise() {
       <div className="container">
         <h2 className="text-2xl text-indigo-500 mt-7">DOM 요소 접근/조작 2</h2>
       </div>
-      <div className="container">
+      <div ref={elementRef} className="container">
         <h2 className="text-2xl text-indigo-500 mt-7">DOM 요소 접근/조작 3</h2>
       </div>
 

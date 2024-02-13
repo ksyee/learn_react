@@ -26,25 +26,25 @@ function FormExample() {
   // 하나의 폼 상태 관리
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
-  // const handleChange = (e) => {
-  // const { name, value } = e.target;
-  // console.log(name, value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    // console.log(name, value);
 
-  // object.property
-  // 각괄호 표기 방법
-  // object[key]
+    // object.property
+    // 각괄호 표기 방법
+    // object[key]
 
-  // formData { feelMessage, agree, email }
-  // formData.agree
-  // formData['agree']
+    // formData { feelMessage, agree, email }
+    // formData.agree
+    // formData['agree']
 
-  // 사용자와 상호작용한 다음 렌더링 턴에서 적용되는 상태 값
-  // const nextFormData = {
-  //   ...formData,
-  //   [name]: value,
-  // };
+    // 사용자와 상호작용한 다음 렌더링 턴에서 적용되는 상태 값
+    const nextFormData = {
+      ...formData,
+      [name]: value,
+    };
 
-  /* 
+    /* 
       nextFormData = {
         feelMessage: '...',
         agree: '...',
@@ -53,8 +53,8 @@ function FormExample() {
       }
     */
 
-  //   setFormData(nextFormData);
-  // };
+    setFormData(nextFormData);
+  };
 
   const handleSubmit = (e) => {
     // 브라우저 기본 동작 중지
@@ -77,21 +77,37 @@ function FormExample() {
           name="feelMessage"
           label="오늘 기분"
           placeholder={INITIAL_FEEL_MESSAGE}
+          value={formData.feelMessage}
+          onChange={handleChange}
         />
         <FormInput
           name="email"
           label="이메일"
           type="email"
           placeholder="user@company.dev"
+          value={formData.email}
+          onChange={handleChange}
         />
 
         <div data-label="라디오 버튼(인풋)">
           <label>
-            <input type="radio" name="agree" value="네" defaultChecked />
+            <input
+              type="radio"
+              name="agree"
+              value="네"
+              checked={formData.agree === '네'}
+              onChange={handleChange}
+            />
             동의하오!
           </label>
           <label>
-            <input type="radio" name="agree" value="아니오" />
+            <input
+              type="radio"
+              name="agree"
+              value="아니오"
+              checked={formData.agree === '아니오'}
+              onChange={handleChange}
+            />
             이의있소!
           </label>
         </div>
@@ -105,7 +121,12 @@ function FormExample() {
           }}
         >
           <label htmlFor="studySubject">공부할 주제</label>
-          <select id="studySubject" name="studySubject">
+          <select
+            id="studySubject"
+            name="studySubject"
+            value={formData.studySubject}
+            onChange={handleChange}
+          >
             <option value="">학습 주제</option>
             <option value="react">리액트</option>
             <option value="storybook">스토리북</option>

@@ -79,6 +79,18 @@ ChatProvider.propTypes = {
 };
 
 // 3-5. 컨텍스트 값을 공급하는 커스텀 훅
+export const useChatStates = () => {
+  const value = useContext(ChatStateContext);
+
+  // 유효성 검사가 필요한 이유
+  if (!value) {
+    throw new Error(
+      'useChatStates 훅은 ChatProvider 내부에서만 사용 가능합니다.'
+    );
+  }
+
+  return value;
+};
 
 export const useChatUpdaters = () => {
   const value = useContext(ChatUpdaterContext);
@@ -91,17 +103,6 @@ export const useChatUpdaters = () => {
   return value;
 };
 
-export const useChatStates = () => {
-  const value = useContext(ChatUpdaterContext);
-
-  if (!value) {
-    throw new Error(
-      'useChatStates 훅은 ChatStateProvider 내부에서만 사용 가능합니다.'
-    );
-  }
-
-  return value;
-};
 // 3-6. 효율적인 리-렌더링 관리 (프로파일링 & 메모)
 // - state 컨텍스트 (변경되는 값(상태)을 반환하는 컨텍스트)
 // - updater 컨텍스트 (변경되지 않는 값(함수)을 반환하는 컨텍스트)

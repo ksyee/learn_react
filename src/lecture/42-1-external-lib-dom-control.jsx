@@ -1,11 +1,11 @@
 import { useTilt } from '@/hooks';
 import { range } from '@/utils';
 
-const BOX_COUNT = 9;
 const BOX_OPTIONS = {
   reverse: true,
   glare: true,
   'max-glare': 0.7,
+  scale: 0.94,
 };
 
 function Exercise() {
@@ -32,6 +32,7 @@ export function TiltBox({
     onTilt,
     options,
   });
+
   return (
     <div
       ref={boxRef}

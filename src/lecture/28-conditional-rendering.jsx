@@ -48,7 +48,7 @@ function Exercise1() {
   // );
 
   // 로그인 여부 (상태 변수, 랜덤 값)
-  // let isSignin; // Math.random() >= 0.5;
+  let isSignin; // Math.random() >= 0.5;
 
   console.log(isSignin);
 
@@ -89,14 +89,14 @@ function Exercise1() {
   // return isSignin ?? <SignInPage />;
 
   // 5. 옵셔널 체이닝 활용
-  return renders.dashboardPage?.(); // undefined
+  return renders.dashbardPage?.(); // undefined
 }
 
 const renders = {
   sign() {
     return <SignInPage />;
   },
-  dashboard() {
+  dashbard() {
     return <DashboardPage />;
   },
   // dashboardPage: undefined
