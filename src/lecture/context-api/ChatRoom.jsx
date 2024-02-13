@@ -1,28 +1,25 @@
-import { useState } from 'react';
-import { oneOf, string, exact } from 'prop-types';
+import { memo } from 'react';
+import { func } from 'prop-types';
 import ChatRoomInfo from './ChatRoomInfo';
 import MessageInput from './MessageInput';
 import SpeechBubble from './SpeechBubble';
-import { memo } from 'react';
+import { CHAT_MESSAGE_TYPE, CHAT_USER_TYPE } from './types';
 
-function ChatRoom({ users, message = [] }) {
-  // 변경된 users 상태를 읽어야 한다.
+function ChatRoom({ users, messages = [], onUpdate }) {
   return (
     <div>
       <h3>ChatRoom {users.name}</h3>
-      <ChatRoomInfo />
-      <SpeechBubble />
-      <MessageInput />
+      <ChatRoomInfo userRole={users.role} />
+      <SpeechBubble messages={messages} />
+      <MessageInput onSend={onUpdate} />
     </div>
   );
 }
 
 ChatRoom.propTypes = {
-  users: exact({
-    id: string,
-    name: string,
-    role: oneOf(['GUEST', 'MEMBER', 'ADMINISTRATOR']),
-  }).isRequired,
+  users: CHAT_USER_TYPE,
+  messages: CHAT_MESSAGE_TYPE,
+  onUpdate: func,
 };
 
 export default memo(ChatRoom);

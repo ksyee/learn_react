@@ -17,17 +17,17 @@ function ChatRoomList() {
     });
   }, []);
 
-  const [message, setMessage] = useState(['친구야 우리 언제 만남']);
+  const [messages, setMessages] = useState(['친구야!!! 우리 언제 만나?']);
 
-  const updateMessages = (newMessage) => {
-    setMessage([...message, newMessage]);
-  };
+  const updateMessages = useCallback((newMessage) => {
+    setMessages((messages) => [...messages, newMessage]);
+  }, []);
 
   return (
     <div>
       <h3>ChatRoomList</h3>
       <ChatSummary onUpdate={updateUsers} />
-      <ChatRoom users={users} message />
+      <ChatRoom users={users} messages={messages} onUpdate={updateMessages} />
     </div>
   );
 }
