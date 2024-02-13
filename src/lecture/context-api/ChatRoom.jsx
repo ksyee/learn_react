@@ -1,8 +1,8 @@
 import { memo } from 'react';
+import { useChat } from '@/contexts/Chat';
 import ChatRoomInfo from './ChatRoomInfo';
 import MessageInput from './MessageInput';
 import SpeechBubble from './SpeechBubble';
-import { useChat } from '@/contexts/Chat';
 
 function ChatRoom() {
   const { users } = useChat();

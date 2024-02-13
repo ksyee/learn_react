@@ -1,6 +1,6 @@
-import { func } from 'prop-types';
-import { memo, useContext } from 'react';
 import { useChat } from '@/contexts/Chat';
+import { func } from 'prop-types';
+import { memo } from 'react';
 
 function ChatSummary() {
   const { updateUsers: onUpdate } = useChat();
