@@ -1,16 +1,19 @@
-import React from 'react';
-import Header from '@/components/Header';
-import Sidebar from '@/components/Sidebar';
-import Footer from '@/components/Footer';
 import { node, bool } from 'prop-types';
 import { Outlet } from 'react-router-dom';
 
-function RootLayout({ children, sidebar = false }) {
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import SideBar from './layout/SideBar';
+
+function RootLayout({ /* children, */ sidebar = false }) {
   return (
     <>
       <Header />
-      <main>{children}</main>
-      {sidebar && <Sidebar />}
+      {/* <main>{children}</main> */}
+      <main className="">
+        <Outlet />
+      </main>
+      {sidebar && <SideBar />}
       <Footer />
     </>
   );
