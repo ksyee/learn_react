@@ -21,6 +21,7 @@ function SkipToContentPage({ goTo }) {
         navigate('/context-intro', { replace: true });
       }, 3000);
     }
+
     return () => {
       clearTimeout(timerClearId);
     };
@@ -36,6 +37,7 @@ function SkipToContentPage({ goTo }) {
     <>
       <h2 className="my-5">메인 영역으로 바로가기</h2>
       <nav aria-label="특정 영역 이동 링크" className="my-5 text-xs flex gap-5">
+        <SkipToContent href="#section-200">섹션 200으로 이동</SkipToContent>
         <SkipToContent href="#section-200">섹션 200으로 이동</SkipToContent>
         <SkipToContent href="#section-300">섹션 300으로 이동</SkipToContent>
         <SkipToContent href="#section-900">섹션 900으로 이동</SkipToContent>
