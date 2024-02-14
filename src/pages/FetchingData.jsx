@@ -19,6 +19,18 @@ function FetchingDataPage() {
 
   console.log('searchParams:', searchParams);
 
+  const [searchParams] = useSearchParams();
+
+  // URLSearchParams 객체 순환
+  // for (const [key, value] of searchParams) {
+  //   console.log(key, typeof value)
+  // }
+
+  const productOptions = {
+    size: searchParams.get('size'),
+    filter: searchParams.get('filter'),
+  };
+
   return (
     <>
       <Helmet>
@@ -50,6 +62,7 @@ export default FetchingDataPage;
 export async function loader() {
   const products = await pb.collection('products').getList();
 
+  // 뮤테이션(mutation)
   const productItems = products.items.map((product) => {
     const photoURL = getPbImage(product);
     product.photo = photoURL;
@@ -65,13 +78,7 @@ export async function loader() {
 /* -------------------------------------------------------------------------- */
 
 function ProductCard({ product, options }) {
-  let imageWidth = 'w-full';
-
-  if (options.size) {
-    imageWidth = `w-${options.size}`;
-  }
-
-  console.log(imageWidth);
+  console.log(options);
 
   return (
     <li>
@@ -81,11 +88,11 @@ function ProductCard({ product, options }) {
       <img
         src={product.photo}
         className="w-full h-auto aspect-auto"
-        alt=""
         style={{
-          inlineSize: options.size,
-          filter: `${options.filter}()`,
+          width: options.size,
+          filter: options.filter,
         }}
+        alt=""
       />
     </li>
   );

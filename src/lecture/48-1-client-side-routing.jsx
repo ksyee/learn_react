@@ -33,7 +33,7 @@ import router from '@/routes';
 // 6-6-2. useNavigate 훅 (https://bit.ly/3OGex3a)
 // 6-7. "찾을 수 없음(Not Found)" 에러 핸들링 (https://bit.ly/48nxdvG)
 //
-// 7. 검색 엔진 최적화(SEO) → 기계(검색봇) 접근 → 사용자 접근성 향상
+// 7. 검색 엔진 최적화(SEO) → 기계(검색봇) 접근 → 사용자 접근성 향상 ✅
 // 7-1. useDocumentTitle 커스텀 훅
 // 7-2. react-helmet-async 활용 (https://bit.ly/3OEnLg4)
 //
@@ -42,6 +42,9 @@ import router from '@/routes';
 // 8-2. URL 매개변수 ← useLoaderData 훅 (https://bit.ly/3OFjUQ5)
 // 8-3. URLSearchParams (https://mzl.la/48elZJJ) ← useSearchParams 훅 (https://bit.ly/3uwBqiu)
 //
+// URL의 쿼리 문자열(Query String)
+// https://www.google.com/search?q=gemini&newwindow=1&sca_esv=sca_esv_fallback&sxsrf=ACQVn0-fAoONNmgPvbdYGQ-dGX7d5xvOMw%3A1707886223439&source=hp&ei=j0bMZZ-uBrbg2roPl4OR0Ag&iflsig=ANes7DEAAAAAZcxUn7EdFE9E43gPteQjRrqfBDNPvoMz&udm=&oq=gemin&gs_lp=Egdnd3Mtd2l6IgVnZW1pbioCCAAyCxAAGIAEGLEDGIMBMgQQABgDMgsQABiABBixAxiDATILEAAYgAQYsQMYgwEyCxAAGIAEGLEDGIMBMgQQABgDMgsQABiABBixAxiDATILEAAYgAQYsQMYgwEyBBAAGAMyBBAAGANI7hJQAFiLBnAAeACQAQCYAYABoAHVBKoBAzAuNbgBA8gBAPgBAcICERAuGIAEGLEDGIMBGMcBGNEDwgIOEC4YgAQYsQMYgwEY1ALCAggQABiABBixA8ICCxAuGIAEGMcBGNED&sclient=gws-wiz
+// ?q=gemini&newwindow=1&sca_esv=sca_esv_fallback&sxsrf=ACQVn0-fAoONNmgPvbdYGQ-dGX7d5xvOMw%3A1707886223439&source=hp&ei=j0bMZZ-uBrbg2roPl4OR0Ag&iflsig=ANes7DEAAAAAZcxUn7EdFE9E43gPteQjRrqfBDNPvoMz&udm=&oq=gemin&gs_lp=Egdnd3Mtd2l6IgVnZW1pbioCCAAyCxAAGIAEGLEDGIMBMgQQABgDMgsQABiABBixAxiDATILEAAYgAQYsQMYgwEyCxAAGIAEGLEDGIMBMgQQABgDMgsQABiABBixAxiDATILEAAYgAQYsQMYgwEyBBAAGAMyBBAAGANI7hJQAFiLBnAAeACQAQCYAYABoAHVBKoBAzAuNbgBA8gBAPgBAcICERAuGIAEGLEDGIMBGMcBGNEDwgIOEC4YgAQYsQMYgwEY1ALCAggQABiABBixA8ICCxAuGIAEGMcBGNED&sclient=gws-wiz
 // 9. 다이내믹 루트(Dynamic Routes) 구성
 // 9-1. 다이내믹 세그먼트 `:` (https://bit.ly/49y9wl7)
 // 9-2. useParams 훅 (https://bit.ly/3HYKsbq)
