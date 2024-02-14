@@ -1,5 +1,6 @@
 import { getDocumentTitle } from '@/utils';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
@@ -12,6 +13,12 @@ function HomePage() {
         />
       </Helmet>
       <h2 className="my-5">홈 페이지</h2>
+      <Link
+        className="inline-block p-2 mb-5"
+        to="/fetching-data?size=420px&filter=saturate(10%)"
+      >
+        데이터 가져오기 페이지로 이동
+      </Link>
     </>
   );
 }
