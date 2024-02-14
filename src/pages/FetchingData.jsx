@@ -48,7 +48,7 @@ function FetchingDataPage() {
 
 export default FetchingDataPage;
 
-// 비동기 호출 (GET)
+// 비동기 요청 (GET)
 export async function loader() {
   const products = await pb.collection('products').getList();
 
@@ -64,6 +64,22 @@ export async function loader() {
   };
 }
 
+// 비동기 요청 (POST, PUT(PATCH), DELETE)
+// React Router's <Form></Form>
+export async function action({ request }) {
+  switch (request.method) {
+    case 'POST':
+      // PocketBase : Create Record
+      break;
+    case 'PUT':
+      // PocketBase : Edit Record
+      break;
+    case 'DELETE':
+      // PocketBase : Delete Record
+      break;
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 
 function ProductCard({ product, options }) {
@@ -72,8 +88,11 @@ function ProductCard({ product, options }) {
     filter: options.filter,
   };
 
+  // const slug = `${getSlug(product.title)}/color/${getSlug(product.color)}`;
+
   return (
     <li className="shadow-lg flex flex-col space-y-1 p-2 border border-stone-200 bg-white">
+      {/* <Link to={`/product/${slug}`}> */}
       <Link to={`/product/${product.id}`}>
         <h4 className=" order-1">
           {product.title} ({product.color})
