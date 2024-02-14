@@ -1,4 +1,8 @@
-import { createBrowserRouter } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFormElements,
+  Route,
+} from 'react-router-dom';
 
 // 레이아웃(Layouts)
 import RootLayout from '@/pages/layouts/RootLayout';
@@ -27,21 +31,13 @@ const options = {
 let router = createBrowserRouter(routes, options);
 
 // JSX 라우터 구성 + 라우터 인스턴스 생성
-// router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route path="/" element={<RootLayout />} errorElement={<NotFound />}>
-//       <Route path="" element={<HomePage />} />
-//       <Route path="intro" element={<IntroPage />} />
-//       <Route
-//         path="non-block-ui-with-updating-state"
-//         element={<NonBlockUIPage />}
-//       />
-//       <Route path="/admin" element={<AdminLayout />}>
-//         {/* .... */}
-//       </Route>
-//     </Route>
-//   )
-// );
+router = createBrowserRouter(
+  createRoutesFormElements(
+    <Route>
+      <Route></Route>
+    </Route>
+  )
+);
 
 // 라우터 인스턴스 기본 내보내기
 export default router;
