@@ -1,18 +1,24 @@
-import { Navigate, useNavigate } from 'react-router-dom';
 import { range } from '@/utils';
 import { string, node } from 'prop-types';
 import { SkipToContent } from '@/components';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
+let tryDemo = false;
+
 function SkipToContentPage({ goTo }) {
+  // React Router 6.4+ <Redirect /> 사용 못함
+
+  // 프로그래밍 방식 1.
+  // useNavigate 훅
   const navigate = useNavigate();
 
   useEffect(() => {
     let timerClearId = 0;
 
-    if (tryToDemo) {
+    if (tryDemo) {
       timerClearId = setTimeout(() => {
-        navigate('/content-intro', { replace: true });
+        navigate('/context-intro', { replace: true });
       }, 3000);
     }
     return () => {

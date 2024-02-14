@@ -22,8 +22,8 @@ const navigationItems = [
   {
     id: 'skip-to-content',
     path: '/skip-to-content',
-    text: '메인 영역으로 바로가기',
-    element: <SkipToContentPage goTo="/" />,
+    text: '메인 영역 바로가기',
+    element: <SkipToContentPage />,
   },
   {
     id: 'deferred-value',
