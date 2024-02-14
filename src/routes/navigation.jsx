@@ -4,6 +4,7 @@ import IntroContextPage from '@/pages/IntroContext';
 import NonBlockUIPage from '@/pages/NonBlockUI';
 import DeferredValuePage from '@/pages/DeferredValue';
 import SkipToContentPage from '@/pages/SkipToContent';
+import FetchingData, { loader as fetchingData } from '@/pages/FetchingData';
 
 // 내비게이션 구성(navigation configuration)
 const navigationItems = [
@@ -24,6 +25,17 @@ const navigationItems = [
     path: '/skip-to-content',
     text: '메인 영역 바로가기',
     element: <SkipToContentPage />,
+  },
+  {
+    id: 'fetching-data',
+    path: '/fetching-data',
+    text: '데이터 가져오기',
+    element: <FetchingData />,
+    loader: fetchingData,
+    // 인라인
+    // loader: async () => {
+    //   return await pb.collection('products').getList();
+    // },
   },
   {
     id: 'deferred-value',
