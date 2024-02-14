@@ -1,22 +1,38 @@
-import { Link, useLocation } from 'react-router-dom';
-import { node, string, oneOfType, exact } from 'prop-types';
-import { useLayoutEffect } from 'react';
+import { useCallback } from 'react';
+import { func, string } from 'prop-types';
+import { A11yHidden } from '@/components';
 
-function SkipToContent({ href, ...restProps }) {
-  useLayoutEffect(() => {
-    const targetElement = document.querySelector(href.replace('#', ''));
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }
-  });
+function SkipToContent({ href, onClick, ...restProps }) {
+  const handleSmoothScroll = useCallback(
+    (e) => {
+      e.preventDefault();
 
-  return <a href={href} onClick={handleSmoothScroll} />;
+      const targetElement = document.getElementById(href.replace(/#/, ''));
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+        });
+
+        onClick?.(e);
+      }
+    },
+    [href, onClick]
+  );
+
+  return (
+    <A11yHidden
+      as="a"
+      href={href}
+      onClick={handleSmoothScroll}
+      {...restProps}
+    />
+  );
 }
 
 SkipToContent.propTypes = {
   href: string.isRequired,
+  onClick: func,
 };
 
 // function SkipToContent({ href, children, ...restProps }) {
