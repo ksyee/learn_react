@@ -1,15 +1,16 @@
-import pb from '@/api/pocketbase';
-import { getDocumentTitle, getPbImage } from '@/utils';
 import { Helmet } from 'react-helmet-async';
-import { useLoaderData, useSearchParams, Link } from 'react-router-dom';
 import { shape, string, number } from 'prop-types';
-import getSlug from '../utils/getSlug';
+import { Link, useLoaderData, useSearchParams } from 'react-router-dom';
+import { getDocumentTitle, getPbImage, getSlug } from '@/utils';
+import pb from '@/api/pocketbase';
 
 function FetchingDataPage() {
   const [searchParams] = useSearchParams();
 
-  // const size = searchParams.get('size');
-  // const filter = searchParams.get('filter');
+  // URLSearchParams 객체 순환
+  // for (const [key, value] of searchParams) {
+  //   console.log(key, typeof value)
+  // }
 
   const productOptions = {
     size: searchParams.get('size'),
@@ -30,7 +31,7 @@ function FetchingDataPage() {
         />
       </Helmet>
       <h2 className="my-5">데이터 가져오기</h2>
-      <ul>
+      <ul className="flex flex-col gap-2">
         {productsData.items?.map((product) => {
           return (
             <ProductCard
@@ -66,30 +67,24 @@ export async function loader() {
 /* -------------------------------------------------------------------------- */
 
 function ProductCard({ product, options }) {
-  let imageWidth = 'w-full';
-
-  if (options.size) {
-    imageWidth = `w-${options.size}`;
-  }
-
-  console.log(imageWidth);
+  const styles = {
+    width: options.size,
+    filter: options.filter,
+  };
 
   const slug = `${getSlug(product.title)}/color/${getSlug(product.color)}`;
 
   return (
-    <li className="flex flex-col space-y-1 p-2 border border-zinc-300 bg-white">
-      <Link to={`product/${slug}`}>
-        <h4>
+    <li className="shadow-lg flex flex-col space-y-1 p-2 border border-stone-200 bg-white">
+      <Link to={`/product/${slug}`}>
+        <h4 className=" order-1">
           {product.title} ({product.color})
         </h4>
         <img
           src={product.photo}
-          className="w-full h-auto aspect-auto order-1 self-center"
+          className="w-full h-auto aspect-auto"
+          style={styles}
           alt=""
-          style={{
-            inlineSize: options.size,
-            filter: `${options.filter}()`,
-          }}
         />
       </Link>
     </li>

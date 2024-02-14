@@ -40,16 +40,12 @@ const navigationItems = [
     // 비동기 호출 코드 여기에 작성
     //   return await pb.collection('products').getList();
     // },
-    children: [
-      {
-        id: 'product',
-        path: 'product/:productId',
-      },
-    ],
+    // children: []
+    // <Outlet />
   },
   {
-    id: 'fetching-data-product',
-    path: '/product/:productId',
+    id: 'data-product',
+    path: '/product/:slug/color/:color',
     element: <ProductDetailPage />,
   },
   {
