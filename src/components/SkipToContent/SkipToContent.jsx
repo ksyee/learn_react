@@ -1,25 +1,43 @@
 import { Link, useLocation } from 'react-router-dom';
 import { node, string, oneOfType, exact } from 'prop-types';
+import { useLayoutEffect } from 'react';
 
-function SkipToContent({ href, children, ...restProps }) {
-  const { pathname } = useLocation();
+function SkipToContent({ href, ...restProps }) {
+  useLayoutEffect(() => {
+    const targetElement = document.querySelector(href.replace('#', ''));
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  });
 
-  return (
-    <Link to={`${pathname}${href}`} {...restProps}>
-      {children}
-    </Link>
-  );
+  return <a href={href} onClick={handleSmoothScroll} />;
 }
 
-const PathType = exact({
-  pathname: string,
-  search: string,
-  hash: string,
-});
-
 SkipToContent.propTypes = {
-  href: oneOfType([string, PathType]),
-  children: node.isRequired,
+  href: string.isRequired,
 };
+
+// function SkipToContent({ href, children, ...restProps }) {
+//   const { pathname } = useLocation();
+
+//   return (
+//     <Link to={`${pathname}${href}`} {...restProps}>
+//       {children}
+//     </Link>
+//   );
+// }
+
+// const PathType = exact({
+//   pathname: string,
+//   search: string,
+//   hash: string,
+// });
+
+// SkipToContent.propTypes = {
+//   href: oneOfType([string, PathType]),
+//   children: node.isRequired,
+// };
 
 export default SkipToContent;
