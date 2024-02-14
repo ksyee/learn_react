@@ -1,8 +1,9 @@
-import { range } from '@/utils';
-import { string, node } from 'prop-types';
-import { SkipToContent } from '@/components';
-import { Navigate, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { node, string } from 'prop-types';
+import { Helmet } from 'react-helmet-async';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { getDocumentTitle, range } from '@/utils';
+import { SkipToContent } from '@/components';
 
 let tryDemo = false;
 
@@ -35,7 +36,14 @@ function SkipToContentPage({ goTo }) {
 
   return (
     <>
-      <h2 className="my-5">메인 영역으로 바로가기</h2>
+      <Helmet>
+        <title>{getDocumentTitle('특정 위치로 바로가기')}</title>
+        <meta
+          name="description"
+          content="어떤 사용자는 반복적인 내비게이션 영역을 건너 띄어 본문 영역 또는 특정 영역으로 바로 이동하는 기능이 필요합니다."
+        />
+      </Helmet>
+      <h2 className="my-5">특정 위치로 바로가기</h2>
       <nav aria-label="특정 영역 이동 링크" className="my-5 text-xs flex gap-5">
         <SkipToContent href="#section-200">섹션 200으로 이동</SkipToContent>
         <SkipToContent href="#section-200">섹션 200으로 이동</SkipToContent>
