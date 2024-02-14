@@ -1,8 +1,9 @@
 import pb from '@/api/pocketbase';
 import { getDocumentTitle, getPbImage } from '@/utils';
 import { Helmet } from 'react-helmet-async';
-import { useLoaderData, useSearchParams } from 'react-router-dom';
+import { useLoaderData, useSearchParams, Link } from 'react-router-dom';
 import { shape, string, number } from 'prop-types';
+import getSlug from '../utils/getSlug';
 
 function FetchingDataPage() {
   const [searchParams] = useSearchParams();
@@ -18,18 +19,6 @@ function FetchingDataPage() {
   const productsData = useLoaderData();
 
   console.log('searchParams:', searchParams);
-
-  const [searchParams] = useSearchParams();
-
-  // URLSearchParams 객체 순환
-  // for (const [key, value] of searchParams) {
-  //   console.log(key, typeof value)
-  // }
-
-  const productOptions = {
-    size: searchParams.get('size'),
-    filter: searchParams.get('filter'),
-  };
 
   return (
     <>
@@ -62,7 +51,6 @@ export default FetchingDataPage;
 export async function loader() {
   const products = await pb.collection('products').getList();
 
-  // 뮤테이션(mutation)
   const productItems = products.items.map((product) => {
     const photoURL = getPbImage(product);
     product.photo = photoURL;
@@ -78,22 +66,32 @@ export async function loader() {
 /* -------------------------------------------------------------------------- */
 
 function ProductCard({ product, options }) {
-  console.log(options);
+  let imageWidth = 'w-full';
+
+  if (options.size) {
+    imageWidth = `w-${options.size}`;
+  }
+
+  console.log(imageWidth);
+
+  const slug = `${getSlug(product.title)}/color/${getSlug(product.color)}`;
 
   return (
-    <li>
-      <h4>
-        {product.title} ({product.color})
-      </h4>
-      <img
-        src={product.photo}
-        className="w-full h-auto aspect-auto"
-        style={{
-          width: options.size,
-          filter: options.filter,
-        }}
-        alt=""
-      />
+    <li className="flex flex-col space-y-1 p-2 border border-zinc-300 bg-white">
+      <Link to={`product/${slug}`}>
+        <h4>
+          {product.title} ({product.color})
+        </h4>
+        <img
+          src={product.photo}
+          className="w-full h-auto aspect-auto order-1 self-center"
+          alt=""
+          style={{
+            inlineSize: options.size,
+            filter: `${options.filter}()`,
+          }}
+        />
+      </Link>
     </li>
   );
 }
