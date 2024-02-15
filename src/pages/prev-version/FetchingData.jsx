@@ -1,10 +1,10 @@
 import { Helmet } from 'react-helmet-async';
-import { useLoaderData, useSearchParams } from 'react-router-dom';
+import { shape, string, number } from 'prop-types';
+import { Link, useLoaderData, useSearchParams } from 'react-router-dom';
 import { getDocumentTitle, getPbImage } from '@/utils';
-import { ProductCard } from '@/components';
 import pb from '@/api/pocketbase';
 
-export function Component() {
+function FetchingDataPage() {
   const productsData = useLoaderData();
   // console.log(productsData);
 
@@ -19,10 +19,6 @@ export function Component() {
     size: searchParams.get('size'),
     filter: searchParams.get('filter'),
   };
-
-  const productsData = useLoaderData();
-
-  console.log('searchParams:', searchParams);
 
   return (
     <>
@@ -49,12 +45,13 @@ export function Component() {
   );
 }
 
-Component.displayName = 'FetchingDataPage';
+export default FetchingDataPage;
 
 // 비동기 요청 (GET)
 export async function loader() {
   const products = await pb.collection('products').getList();
 
+  // 뮤테이션(mutation)
   const productItems = products.items.map((product) => {
     const photoURL = getPbImage(product);
     product.photo = photoURL;
@@ -82,3 +79,46 @@ export async function action({ request }) {
       break;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+
+function ProductCard({ product, options }) {
+  const styles = {
+    width: options.size,
+    filter: options.filter,
+  };
+
+  // const slug = `${getSlug(product.title)}/color/${getSlug(product.color)}`;
+
+  return (
+    <li className="shadow-lg flex flex-col space-y-1 p-2 border border-stone-200 bg-white">
+      {/* <Link to={`/product/${slug}`}> */}
+      <Link to={`/product/${product.id}`}>
+        <h4 className="order-1 mt-1 mb-3">
+          {product.title} ({product.color})
+        </h4>
+        <img
+          src={product.photo}
+          className="w-[600px] h-auto aspect-auto border border-slate-200"
+          style={styles}
+          alt=""
+        />
+      </Link>
+    </li>
+  );
+}
+
+ProductCard.propTypes = {
+  product: shape({
+    id: string,
+    collectionId: string,
+    title: string,
+    color: string,
+    photo: string,
+    price: number,
+  }),
+  options: shape({
+    size: string,
+    filter: string,
+  }),
+};
