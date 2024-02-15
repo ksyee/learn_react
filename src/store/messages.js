@@ -6,6 +6,7 @@ export const INIT_MESSAGES_INFO = {
       text: '리듀서 함수를 작성해봐요~ 😉',
     },
   ],
+  editMessage: null,
 };
 
 // 리듀서(상태 관리 함수)
@@ -38,7 +39,14 @@ export const manageMessages = (state, action /* { type, payload? } */) => {
         ...state,
       };
 
-    case '메시지/읽기':
+    case SELECT_EDIT_MESSAGE:
+      return {
+        ...state,
+        editMessage: action.payload,
+      };
+
+    // case '메시지/읽기':
+
     default:
       return state;
   }

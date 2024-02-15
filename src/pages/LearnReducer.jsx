@@ -41,6 +41,17 @@ export function Component() {
     dispatch(deleteAction);
   };
 
+  const handleEditMessage = (editId) => () => {
+    const editAction = {
+      type: EDIT_MESSAGE,
+      payload: editId,
+    };
+
+    dispatch(editAction);
+  };
+
+  // const handleSelectMess = editId;
+
   return (
     <>
       <Helmet>
@@ -59,13 +70,27 @@ export function Component() {
         <button type="submit">추가</button>
       </form>
 
+      <div>
+        <form className="flex gap-5" onSubmit={handleAddMessage}>
+          <FormInput ref={inputRef} name="message" label="message" hiddenLabel>
+            메시지
+          </FormInput>
+          <button type="submit">수정</button>
+        </form>
+      </div>
+
       <ul className="my-5">
         {messageState.messages.map(({ id, text }) => (
           <li key={id}>
             {text}
-            <button type="button" onClick={handleDeleteMessage(id)}>
-              ❌
-            </button>
+            <div className="ml-2 flex gap-1">
+              <button type="button" onClick={handleSelectMessage(id)}>
+                ✍️
+              </button>
+              <button type="button" onClick={handleDeleteMessage(id)}>
+                ❌
+              </button>
+            </div>
           </li>
         ))}
       </ul>
