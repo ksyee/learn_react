@@ -116,15 +116,6 @@ export function Component() {
         </form>
       </div>
 
-      <div>
-        <form className="flex gap-5" onSubmit={handleAddMessage}>
-          <FormInput ref={inputRef} name="message" label="message" hiddenLabel>
-            메시지
-          </FormInput>
-          <button type="submit">수정</button>
-        </form>
-      </div>
-
       <ul className="my-5">
         {messageState.messages.map(({ id, text }) => (
           <li key={id} className="flex gap-x-4">

@@ -3,10 +3,17 @@ import { useLoaderData, useSearchParams } from 'react-router-dom';
 import { getDocumentTitle, getPbImage } from '@/utils';
 import { ProductCard } from '@/components';
 import pb from '@/api/pocketbase';
+import { useQuery } from '@tanstack/react-query';
 
 export function Component() {
   const productsData = useLoaderData();
   // console.log(productsData);
+
+  const { data: cachedData } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchProduct,
+    initialData: productsData,
+  });
 
   const [searchParams] = useSearchParams();
 
@@ -33,7 +40,7 @@ export function Component() {
       </Helmet>
       <h2 className="my-5">데이터 가져오기</h2>
       <ul className="flex flex-col gap-2 items-center my-5">
-        {productsData.items?.map((product) => {
+        {cachedData.items?.map((product) => {
           return (
             <ProductCard
               key={product.id}
