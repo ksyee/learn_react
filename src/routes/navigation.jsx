@@ -24,6 +24,7 @@ const navigationItems = [
     // element: <IntroContextPage />,
     lazy: () => import('@/pages/IntroContext'),
   },
+
   {
     id: 'skip-to-content',
     path: '/skip-to-content',

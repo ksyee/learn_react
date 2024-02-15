@@ -20,8 +20,6 @@ export function Component() {
     filter: searchParams.get('filter'),
   };
 
-  const productsData = useLoaderData();
-
   console.log('searchParams:', searchParams);
 
   return (
